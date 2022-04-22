@@ -1,0 +1,31 @@
+{
+  "name": "practico_n5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.3",
+    "express-handlebars": "^5.3.3",
+    "express-session": "^1.17.2",
+    "install": "^0.13.0",
+    "method-override": "^3.0.0",
+    "mongodb": "^4.1.1",
+    "mongoose": "^6.0.5",
+    "node-fetch": "^2.6.7",
+    "npm": "^8.7.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
