@@ -30,6 +30,9 @@ router.post("/index",(req, res)=>{
               res.render("panelPrincipal", {content: usuario.nombre+" "+usuario.apellido, usuario: usuario.usuario, correo:usuario.email});
             })()
         }
+        else{
+          w
+        }
       })();
 });
 module.exports = router;

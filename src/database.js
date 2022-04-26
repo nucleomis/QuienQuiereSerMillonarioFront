@@ -6,3 +6,5 @@ mongoose.connect('mongodb+srv://admin:32608686CheCho!@cluster0.2gfdq.mongodb.net
 })
 .then(db=>console.log("base de datos conectada"))// configuracion para el funcionamiento de la biblioteca
 .catch(err =>console.error("error"));
+
+
