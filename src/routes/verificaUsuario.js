@@ -26,6 +26,7 @@ router.post("/index",(req, res)=>{
                 method: 'GET'
               });
               const usuario = await rawResponse.json();
+              console.log(usuario);
               //redirecciono a la pagina que quiero y envio los datos obtenidos
               res.render("panelPrincipal", {content: usuario});
             })()
