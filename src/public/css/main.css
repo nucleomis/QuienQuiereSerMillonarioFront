@@ -16,6 +16,11 @@ body {
     background-size: cover;
     color: #fff;
 }
+#columnas{
+    column-count:2;
+    column-gap:20px;
+    column-rule:4px solid gray;
+ }
 
 .container-form {
     width: 90%;
