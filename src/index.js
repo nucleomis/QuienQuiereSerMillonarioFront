@@ -53,6 +53,7 @@ app.use(require("./routes/index"));
 app.use(require("./routes/verificaUsuario"));
 app.use(require("./routes/panelPrincipal"));
 
+
 //archivos estaticos
 app.use(express.static(path.join(__dirname, "public")));
 

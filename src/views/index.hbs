@@ -1,59 +1,63 @@
 
-
-    <div>
-        {{#if data}}
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>{{data}}</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<body>
+    <div class="container-form sign-up">
+            <div class="welcome-back">
+                <div class="message">
+                    <h2>Bienvenido</h2>
+                    <p >Si ya tienes una cuenta por favor inicia sesion aqui</p>
+                    <button class="sign-up-btn">Iniciar Sesion</button>
+                </div>
             </div>
-      {{/if}}
-    </div>
-
-    <section class="vh-100 gradient-custom">
-        <form action="/index" method="post">
-            <div class="container py-5 h-100">
-                <div class="row d-flex justify-content-center align-items-center h-100">
-                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                        <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                            <div class="card-body p-5 text-center">
-
-                                <div class="mb-md-5 mt-md-4 pb-5">
-
-                                    <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                                    <p class="text-white-50 mb-5">Por favor ingrese su usuario y password</p>
-
-                                    <div class="form-outline form-white mb-4">
-                                        <input type="text" id="typeEmailX" class="form-control form-control-lg" name="usuario"/>
-                                        <label class="form-label" for="typeEmailX">usuario</label>
-                                    </div>
-
-                                    <div class="form-outline form-white mb-4">
-                                        <input type="password" id="typePasswordX" class="form-control form-control-lg" name="password" />
-                                        <label class="form-label" for="typePasswordX">Password</label>
-                                    </div>
-
-                                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
-
-                                    <input class="btn btn-outline-light btn-lg px-5" type="submit"></input>
-
-                                    <div class="d-flex justify-content-center text-center mt-4 pt-1">
-                                        <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
-                                        <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
-                                        <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
-                                    </div>
-
-                                </div>
-
-                                <div>
-                                    <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+            <form action="/registrar" method="post"  class="formulario">
+                <h2 class="create-account" >Crear una cuenta</h2><br>
+                <input  type="text" name="nombre" placeholder="Nombre">
+                <input  type="text" name="apellido" placeholder="Apellido">
+                <input  type="text" name="direccion" placeholder="Direccion">
+                <input  type="text" name="user" placeholder="Usuario">
+                <input  type="email" name="email" placeholder="Email">
+                <input  type="password" name="password" placeholder="Contraseña">
+                <input  type="submit" value="Registrarse">
+            </form>
+        </div>
+        <div  class="container-form sign-in">
+            <form action="/index" method="post" class="formulario">
+                <h2 class="create-account">Iniciar Sesion</h2>
+                <div class="iconos">
+                    <div class="border-icon">
+                        <i class='bx bxl-instagram'></i>
                     </div>
-                </div> 
+                    <div class="border-icon">
+                        <i class='bx bxl-linkedin' ></i>
+                    </div>
+                    <div class="border-icon">
+                        <i class='bx bxl-facebook-circle' ></i>
+                    </div>
+                </div>
+                <p class="cuenta-gratis">¿Aun no tienes una cuenta?</p>
+                <input type="text" name="usuario" placeholder="Nombre">
+                <input type="password" name="password" placeholder="Contraseña">
+                <input type="submit" value="ingresar">
+            </form>
+            <div class="welcome-back">
+                <div class="message">
+                    <h2 >Bienvenido de nuevo</h2>
+                    <p >Si aun no tienes una cuenta por favor registrese aqui</p>
+                    <button class="sign-in-btn">Registrarse</button>
+                </div>
             </div>
-        </form>
-</section>
-</section>
-    </div>
+        </div>
+    <script>
+            const $btnSignIn= document.querySelector('.sign-in-btn'),
+            $btnSignUp = document.querySelector('.sign-up-btn'),  
+            $signUp = document.querySelector('.sign-up'),
+            $signIn  = document.querySelector('.sign-in');
+
+            document.addEventListener('click', e => {
+                if (e.target === $btnSignIn || e.target === $btnSignUp) {
+                $signIn.classList.toggle('active');
+                $signUp.classList.toggle('active')
+                }
+            });
+    </script>
+
+</body>
