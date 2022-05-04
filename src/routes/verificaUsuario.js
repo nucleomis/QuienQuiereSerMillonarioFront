@@ -27,11 +27,13 @@ router.post("/index",(req, res)=>{
               });
               const usuario = await rawResponse.json();
               //redirecciono a la pagina que quiero y envio los datos obtenidos
-              res.render("panelPrincipal"),{content:usuario, juegos:usuario.data.juegos};
+              console.log(usuario.data.juegos);
+              res.render("panelPrincipal", {content: usuario, juegos: usuario.data.juegos});
             })()
         }
+
         else{
-          w
+          console.log("usuario y contraseña incorrectos");
         }
       })();
 });
