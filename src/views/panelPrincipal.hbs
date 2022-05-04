@@ -1,18 +1,18 @@
-<div class="d-flex">
-    <div class="card me-3 mt-3 mb-3" style="width: 18rem;">
-        <img src="https://scontent.fpss2-1.fna.fbcdn.net/v/t1.6435-9/74634407_102917407800236_607676651920162816_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeGVdwDaSu5n4AV9DDOC_UHd3hGnsGEeufjeEaewYR65-IbuLaWQh0LSZB6DpT2Ssf4&_nc_ohc=XL2hst4CuXIAX_aF94e&_nc_ht=scontent.fpss2-1.fna&oh=00_AT-qks2uJxXbYMK8soS7UZOfKEPPII9OS0b3MrYcWybeJQ&oe=6289A296" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h1>{{content}}</h1>
-            <h5 class="card-title">{{content.data.apellido}}</h5>
-            <p class="card-text" style="font-family: 'Times New Roman', Times, serif; color:brown">{{correo}}</p>
-        </div>
-    </div>
-</div>  
-<div id="columnas">
+
 <div class="row">
-    
-        {{#each juegos}}
-            <div class="col-md-3 mt-3">
+  <div class="col-xs-6 col-md-2">
+      <header>Panel Principal</header>
+      <h1>{{content.data.nombre}}</h1>
+  <h5 class="card-title">{{content.data.apellido}}</h5>
+  <p class="card-text" style="font-family: 'Times New Roman', Times, serif; color:brown">{{correo}}</p>
+    <div class="principal">
+      <button  class="btn btn-info" type="submit">+ Agregar Juego</button>
+    </div> 
+</div>
+ 
+ <div class="col-xs-12 col-md-8">
+         {{#each juegos}}
+            <div class="col-md-3 mt-4">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title d-flex justify-content-between">
@@ -42,44 +42,16 @@
                         </div>
                 </div>   
         {{/each}} 
+
+  </div>
 </div>
 
-</div>
-</div>
-<div class="row">
-    
-        {{#each juegos}}
-            <div class="col-md-3 mt-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title d-flex justify-content-between">
-                                {{nombreJuego}}<a href="/games/editar/{{id}}" ><i class="fas fa-edit"></i></a>
-                            </h4>
-                            <p>{{fechaCreacion}}</p>
-                            <div class="d-grid gap-1 mt-3">
-                                <form action="/games/borrar/{{id}}?_method=DELETE" method="POST"><!--pruebo pasar el metodo delete para borrar-->
-                                    <input type="hidden" name="_method" value="DELETE"><!--input oculto para donde envia la peticion delete-->
-                                    <button  class="btn btn-danger btn-block btn-sm" type="submit">Borrar</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-            </div> 
-             {{else}}
-                    <div class="col-md-4 mx-auto mt-3">
-                        <div class="card">
-                                <div class="card-body">
-                                    <div class="card-header text-center">NO HAY JUEGOS AUN</div>
-                                <h3 class="text-center">Agregue una nueva tarjeta</h3>
-                                    <div class="d-grid gap-1 mt-3">
-                                        <a href="/games/agregar_juego" class="btn btn-success">Crear un Juego</a>
-                                    </div>
-                                </div>
-                            
-                        </div>
-                </div>   
-        {{/each}} 
-</div>
+
+
+
+
+
+
 
 
 
