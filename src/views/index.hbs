@@ -1,63 +1,51 @@
-
 <body>
-    <div class="container-form sign-up">
-            <div class="welcome-back">
-                <div class="message">
-                    <h2>Bienvenido</h2>
-                    <p >Si ya tienes una cuenta por favor inicia sesion aqui</p>
-                    <button class="sign-up-btn">Iniciar Sesion</button>
+    <main>
+        <div class="container-form sign-up">
+                <div class="welcome-back">
+                    <div class="message">
+                        <h2>Bienvenido</h2>
+                        <p >Si ya tienes una cuenta por favor inicia sesion aqui</p>
+                        <button class="sign-up-btn">Iniciar Sesion</button>
+                    </div>
+                </div>
+                <form action="/registrar" method="post"  class="formulario">
+                    <h2 class="create-account" >Crear una cuenta</h2><br>
+                    <input  type="text" name="nombre" placeholder="Nombre">
+                    <input  type="text" name="apellido" placeholder="Apellido">
+                    <input  type="text" name="direccion" placeholder="Direccion">
+                    <input  type="text" name="user" placeholder="Usuario">
+                    <input  type="email" name="email" placeholder="Email">
+                    <input  type="password" name="password" placeholder="Contraseña">
+                    <input  type="submit" value="Registrarse">
+                </form>
+            </div>
+            <div  class="container-form sign-in">
+                <form action="/index" method="post" class="formulario">
+                    <h2 class="create-account">Iniciar Sesion</h2>
+                    <input type="text" name="usuario" placeholder="Nombre">
+                    <input type="password" name="password" placeholder="Contraseña">
+                    <input type="submit" value="ingresar">
+                </form>
+                <div class="welcome-back">
+                    <div class="message">
+                        <h2>Bienvenido de nuevo</h2>
+                        <p >Si aun no tienes una cuenta por favor registrese aqui</p>
+                        <button class="sign-in-btn">Registrarse</button>
+                    </div>
                 </div>
             </div>
-            <form action="/registrar" method="post"  class="formulario">
-                <h2 class="create-account" >Crear una cuenta</h2><br>
-                <input  type="text" name="nombre" placeholder="Nombre">
-                <input  type="text" name="apellido" placeholder="Apellido">
-                <input  type="text" name="direccion" placeholder="Direccion">
-                <input  type="text" name="user" placeholder="Usuario">
-                <input  type="email" name="email" placeholder="Email">
-                <input  type="password" name="password" placeholder="Contraseña">
-                <input  type="submit" value="Registrarse">
-            </form>
-        </div>
-        <div  class="container-form sign-in">
-            <form action="/index" method="post" class="formulario">
-                <h2 class="create-account">Iniciar Sesion</h2>
-                <div class="iconos">
-                    <div class="border-icon">
-                        <i class='bx bxl-instagram'></i>
-                    </div>
-                    <div class="border-icon">
-                        <i class='bx bxl-linkedin' ></i>
-                    </div>
-                    <div class="border-icon">
-                        <i class='bx bxl-facebook-circle' ></i>
-                    </div>
-                </div>
-                <p class="cuenta-gratis">¿Aun no tienes una cuenta?</p>
-                <input type="text" name="usuario" placeholder="Nombre">
-                <input type="password" name="password" placeholder="Contraseña">
-                <input type="submit" value="ingresar">
-            </form>
-            <div class="welcome-back">
-                <div class="message">
-                    <h2 >Bienvenido de nuevo</h2>
-                    <p >Si aun no tienes una cuenta por favor registrese aqui</p>
-                    <button class="sign-in-btn">Registrarse</button>
-                </div>
-            </div>
-        </div>
-    <script>
-            const $btnSignIn= document.querySelector('.sign-in-btn'),
-            $btnSignUp = document.querySelector('.sign-up-btn'),  
-            $signUp = document.querySelector('.sign-up'),
-            $signIn  = document.querySelector('.sign-in');
+        <script>
+                const $btnSignIn= document.querySelector('.sign-in-btn'),
+                $btnSignUp = document.querySelector('.sign-up-btn'),  
+                $signUp = document.querySelector('.sign-up'),
+                $signIn  = document.querySelector('.sign-in');
 
-            document.addEventListener('click', e => {
-                if (e.target === $btnSignIn || e.target === $btnSignUp) {
-                $signIn.classList.toggle('active');
-                $signUp.classList.toggle('active')
-                }
-            });
-    </script>
-
+                document.addEventListener('click', e => {
+                    if (e.target === $btnSignIn || e.target === $btnSignUp) {
+                    $signIn.classList.toggle('active');
+                    $signUp.classList.toggle('active')
+                    }
+                });
+        </script>
+    </main>
 </body>

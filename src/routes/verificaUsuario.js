@@ -31,7 +31,7 @@ router.post("/index",(req, res)=>{
             })()
         }
         else{
-          w
+          
         }
       })();
 });
