@@ -1,20 +1,25 @@
 
+<div class="container-fluid">
 <div class="row">
-  <div class="col-xs-6 col-md-6">
+  <div class="col-md-2" 
+  style="
+        height: 700px;
+        margin: 2rem;
+        border-radius: 10px;
+        background-color: rgba(51, 51, 51, 0.849);
+        text-align: center;">
       <header>Panel Principal</header>
       <h1>{{content.data.nombre}}</h1>
-  <h5 class="card-title">{{content.data.apellido}}</h5>
-  <p class="card-text" style="font-family: 'Times New Roman', Times, serif; color:brown">{{correo}}</p>
+    <h5 class="card-title">{{content.data.apellido}}</h5>
+    <p class="card-text" style="font-family: 'Times New Roman', Times, serif; color:brown">{{correo}}</p>
     <div class="principal">
       <form action="/nuevapregunta" method="POST">
         <input class="btn btn-info" type="submit" value="crear nuevo juego"></input>
       </form>
     </div> 
-</div>
- 
- <div class="col-xs-6 col-md-8">
+  </div>
          {{#each juegos}}
-            <div class="col-md-3 mt-4">
+              <div class="col-md-2 mt-4">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title d-flex justify-content-between">
@@ -29,85 +34,16 @@
                             </div>
                         </div>
                     </div>
-            </div> 
+                </div>
+    
              {{else}}
                     <div class="col-md-4 mx-auto mt-3">
                         <div class="card">
                                 <div class="card-body">
-                                    <div class="card-header text-center">NO HAY JUEGOS AUN</div>
-                                <h3 class="text-center">Agregue una nueva tarjeta</h3>
-                                    <div class="d-grid gap-1 mt-3">
-                                        <a href="/pregunta" class="btn btn-success">Crear un Juego</a>
-                                    </div>
+                                    <div class="card-header text-center">NO HAY JUEGOS AUN</div>                            
                                 </div>
-                            
                         </div>
-                </div>   
-        {{/each}} 
-
+                    </div>   
+              {{/each}} 
   </div>
-</div>
 
-
-
-
-
-
-
-
-
-
-<!-- Footer -->
-<footer class="bg-grey text-center text-white">
-  <!-- Grid container -->
-  <div class="container p-4">
-    <!-- Section: Social media -->
-    <section class="mb-4">
-      <!-- Facebook -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/sergiomarcelo.sym" role="button"
-        ><i class="fab fa-facebook-f"></i
-      ></a>
-
-      <!-- Twitter -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/?lang=es" role="button"
-        ><i class="fab fa-twitter"></i
-      ></a>
-
-      <!-- Google -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://drive.google.com/drive/folders/1PcM7vufZHFbChgf6wSEQAZiwHCBRPl5-?usp=sharing" role="button"
-        ><i class="fab fa-google"></i
-      ></a>
-
-      <!-- Instagram -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/" role="button"
-        ><i class="fab fa-instagram"></i
-      ></a>
-
-      <!-- Linkedin -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://www.linkedin.com/feed/" role="button"
-        ><i class="fab fa-linkedin-in"></i
-      ></a>
-
-      <!-- Github -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/" role="button"
-        ><i class="fab fa-github"></i
-      ></a>
-    </section>
-    <!-- Section: Social media -->
-
-    <!-- Section: Form -->
-    <section class="">
-      <form action="">
-        <!--Grid row-->
-        <div class="row d-flex justify-content-center">
-          <!--Grid column-->
-          <div class="col-auto">
-            <!-- Submit button -->
-           <a class="btn btn-outline-light btn-floating m-1" href="https://docs.google.com/forms/d/e/1FAIpQLSe1aqzuMeYGy1iD_i1y8jSOGOgpAJFA6iBgk5dxw3NEZMBiOQ/viewform?usp=sf_link" role="button">COMENTARIOS</a>
-          </div>
-          <!--Grid column-->
-        </div>
-        <!--Grid row-->
-      </form>
-    </section>
-    <!-- Section: Form -->
