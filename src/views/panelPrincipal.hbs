@@ -6,7 +6,9 @@
   <h5 class="card-title">{{content.data.apellido}}</h5>
   <p class="card-text" style="font-family: 'Times New Roman', Times, serif; color:brown">{{correo}}</p>
     <div class="principal">
-      <button  class="btn btn-info" type="submit">+ Agregar Juego</button>
+      <form action="/nuevapregunta" method="POST">
+        <input class="btn btn-info" type="submit" value="crear nuevo juego"></input>
+      </form>
     </div> 
 </div>
  
