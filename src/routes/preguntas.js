@@ -1,19 +1,21 @@
 const express = require("express");
 const fetch = require("node-fetch");
 const router = express.Router();
+router.get("/nuevapregunta",(req,res)=>{
+res.redirect("/preguntas");
+})
 router.post("/preguntas",(req, res)=>{
     var pregunta=req.body.pregunta;
     var res1=req.body.res1;
     var res2=req.body.res2;
     var res3=req.body.res3;
-    var res4=req.body.res4;
+    var res4=req.body.res4; 
     var dificultad=req.body.dificultad;
     const url = "https://qqsm-api.herokuapp.com/usuario/preguntas";
-    console.log('ingresando a fetch');
-    console.log(apellido);
+   
     (async () => {
         var preguntasbody = {pregunta:pregunta, res1:res1, res2:res2,res3:res3, res4:res4, dificultad:dificultad}
-        console.log(cuerpo)
+        
         const rawResponse = await fetch(url, {
           method: 'POST',
           headers: {
