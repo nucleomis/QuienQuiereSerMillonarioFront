@@ -1,30 +1,27 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-}
-
-main {
-    display: contents;
-}
-
-body {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+body{/*fondo degradado desde: uigradients.com*/
+    
+    background-image: url("https://wilmancuellar.com/wp-content/uploads/2017/08/millonario.jpg");
     background-image: url("https://wilmancuellar.com/wp-content/uploads/2017/08/millonario.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    color: #fff;
 }
-#nav{
-    width: 155px;
- }
- 
- .titulonav{
+
+#container-fluid{
+    display: flex;
+    
+    justify-content: center;
+}
+
+i{
+    font-size: 70%;
+}
+.logo{
+    width: 50%;
+    margin-left: 25%;
+}
+
+.titulonav{
     border: 1px solid #d7d7d7;   
     font-size: 8pt;
     font-weight: bold;
