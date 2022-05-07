@@ -8,12 +8,11 @@ const passport = require("passport");
 
 //inicializaciones
 const app = express();
-//require("./database");
 require("./config/passport");
-//const User = require("./models/User");
+const User = require("./models/User");
 
 //settings
-app.set("port", process.env.PORT||3000);//seteo el puerto para el uso en caso de subir a algun servidor y escuchar el puerto, por recomendacion express usa el 3000
+app.set("port", 3001);//seteo el puerto para el uso en caso de subir a algun servidor y escuchar el puerto, por recomendacion express usa el 3000
 app.set("views", path.join(__dirname, "views"));//views usa path.join para setear la direccion de las vistas del proyecto con __dirname seguido del nombre de la carpeta
 app.engine(".hbs", exphbs({ //permite el uso de los handlebars en el proyecto usando la libreria express-handlebars
     defaultLayout:"main",
@@ -52,6 +51,8 @@ app.use(
 app.use(require("./routes/index"));
 app.use(require("./routes/verificaUsuario"));
 app.use(require("./routes/panelPrincipal"));
+app.use(require("./routes/formulario"));
+app.use(require("./routes/preguntas"));
 
 //archivos estaticos
 app.use(express.static(path.join(__dirname, "public")));

@@ -31,8 +31,9 @@ router.post("/index",(req, res)=>{
               res.render("panelPrincipal", {content: usuario});
             })()
         }
+
         else{
-          w
+          res.render("index", {messaje: "Usuario o contraseña incorrectos"});
         }
       })();
 });
