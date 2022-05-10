@@ -1,21 +1,59 @@
 <div class="col-md-4 mx-auto mt-3">
     <div class="card">
-        <div class="card-header"> ANDOOOOOOOOOOOOOOO    </div>
+        <div class="card-header"> Escriba la Pregunta y sus Respuestas</div>
         <card class="card-body">
+            {{#if numeroPregunta}}
+                <h3 class="text-center">Pregunta N° {{numeroPregunta}}</h3>
+            {{else}}
+                <h3 class="text-center">Pregunta N° 1</h3>
+            {{/if}}
             <form action="/preguntas" method="POST">
                 <div class="form-group">
-                    <input type="text" name="titulo" class="form-control" placeholder="Titulo" autofocus>
+                    <input type="text" name="pregunta" class="form-control" placeholder="Pregunta" autofocus>
                 </div>
                 <div class="form-group mt-3">
-                    <textarea name="descripcion" class="form-control" placeholder="Descripcion"></textarea>
+                    <input type="text" name="res1" class="form-control" placeholder="Respuesta 1 (Correcta)">
                 </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="res2" class="form-control" placeholder="Respuesta 2">
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="res3" class="form-control" placeholder="Respuesta 3">
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="res4" class="form-control" placeholder="Respuesta 4">
+                </div>
+
+                <input type="hidden" name="inicial" value="{{inicial}}">
+                <input type="hidden" name="numeroPregunta" value="{{numeroPregunta}}">
+            <div class="d-grid gap-1 mt-3">
+                {{#if dificultad}}
+                    <input type="text" class="form-control" placeholder="Nivel de Dificultad: {{dificultad}}" disabled="disabled" style="background-color: #56f337;">
+                {{else}}
+                    <input type="text" class="form-control" placeholder="Nivel de Dificultad: 1" disabled="disabled" style="background-color: #56f337;">
+                {{/if}}
+            </div>
+
                 <div class="d-grid gap-1 mt-3">
-                    <form action="" method="get">
-                        <input class="btn btn-info" type="submit">Guardar</input>
-                    </form>
                     
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="siguiente"></input>
+                            </div>
+                </div>        
+                   
+                
+                <div class="d-grid gap-1 mt-2">
+                    {{#if habilitado}}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="guardar"></input>
+                            </div>
+                        {{else}}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="guardar" disabled="disabled"></input>
+                            </div>                    
+                    {{/if}}
                 </div>
-            </form>
+             </form>
         </card>
     </div>
 </div>
