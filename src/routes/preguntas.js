@@ -44,12 +44,6 @@ router.post("/preguntas",(req, res)=>{
     if(req.session.listaPreguntas.length>=3){
       habilitado = true;
     }
-    
-    
-
-
-    console.log(req.session.listaPreguntas.length);
-
     res.render("preguntas",{success_msg:req.body.success_msg,dificultad:req.session.dificultad, inicial:true, habilitado:habilitado, numeroPregunta:contadorPreguntas});
 
 
