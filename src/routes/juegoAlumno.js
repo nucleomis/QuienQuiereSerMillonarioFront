@@ -1,14 +1,11 @@
-const express = require("express");//archivo donde voy a enlazar mi pagina y ver el formulario
-//const Juego = require("../models/Juego");//llamo al modelo de notas para la base de datos
-const {isAuthenticated} =  require("../helpers/autenticacion");
-
+const express = require("express");
+const fetch = require("node-fetch");
 const router = express.Router();
+router.post("/juegoAlumno",(req,res)=>{
+  console.log("redireccionando a Pantalla de Juego alumno");
+  res.render("juegoAlumno");
+})
 
 
-router.get("/panelPrincipal",isAuthenticated, async (req, res)=>{
-    res.render("juegoAlumno", {idjuego});
-    res.redirect("/juegoAlumno", {idjuego});
 
-
-});
 module.exports = router;
