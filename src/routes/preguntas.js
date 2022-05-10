@@ -19,6 +19,7 @@ router.post("/preguntas",(req, res)=>{
     var dificultad = req.body.dificultad;
     var habilitado = null;
     var finalizar = null;
+    var miprimeravez = {pregunta:pregunta,res1:res1,res2:res2,res3:res3,res4:res4,pista1:pista1,pista2:pista2,dificultad:dificultad}
     const url = "https://qqsm-api.herokuapp.com/usuario/preguntas";
 
     if(!req.body.numeroPregunta){
@@ -34,15 +35,30 @@ router.post("/preguntas",(req, res)=>{
       req.session.dificultad=1;
     }
 
-    if(req.body.boton=="siguiente"){
+    if(req.body.boton=="SIGUIENTE"){
       req.session.listaPreguntas.push({pregunta,res1,res2,res3,res4,pista1,pista2,dificultad});
       contadorPreguntas+=1;
     }
-    if(req.body.boton==="guardar"){
+    if(req.body.boton==="GUARDAR"){
       req.session.listaPreguntas.push({pregunta,res1,res2,res3,res4,pista1,pista2,dificultad});
       req.session.dificultad += 1;
       contadorPreguntas = 1;
       habilitado = null;
+    }
+
+    if(req.body.boton==="FINALIZAR"){
+      (async () => {
+        const rawResponse = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(miprimeravez)
+        });
+        const content = await rawResponse.json();
+        res.render("panelPrincipal")
+      })();
     }
 
     if(req.session.dificultad==3){
