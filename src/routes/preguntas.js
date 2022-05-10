@@ -39,7 +39,7 @@ router.post("/preguntas",(req, res)=>{
     if(req.body.boton==="guardar"){
       req.session.listaPreguntas.push({pregunta,res1,res2,res3,res4,dificultad});
       req.session.dificultad += 1;
-      contadorPreguntas = 0;
+      contadorPreguntas = 1;
       habilitado = null;
     }
 
