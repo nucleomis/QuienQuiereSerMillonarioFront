@@ -31,6 +31,7 @@ app.use(session({//utilizo de la libreria express-session
     resave: true,
     saveUninitialized: true,
 }));
+app.use(express.json());//para que el servidor entienda los datos en formato json
 
 app.use(passport.initialize());
 app.use(passport.session());

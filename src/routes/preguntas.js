@@ -12,11 +12,36 @@ router.post("/preguntas",(req, res)=>{
     var res1=req.body.res1;
     var res2=req.body.res2;
     var res3=req.body.res3;
-    var res4=req.body.res4; 
-    var dificultad=req.body.dificultad;
+    var res4=req.body.res4;
+    var inicial = req.body.inicial;
+    var dificultad = req.body.dificultad;
     const url = "https://qqsm-api.herokuapp.com/usuario/preguntas";
+
+    console.log(inicial);
+
+    if(!inicial){
+      req.session.inicial= 1;
+      req.session.listaPreguntas=[];
+      req.session.dificultad=1;
+    }
+
+    if(req.body.siguiente){
+      req.session.dificultad = "siguiente";
+    }
+    if(req.body.guardar){
+      req.session.dificultad = "guardar";
+    }
+
+    req.body.success_msg = "hola";
+
+    req.session.listaPreguntas.push({pregunta,res1,res2,res3,res4,dificultad});
+
+
+    res.render("preguntas",{success_msg:req.body.success_msg,dificultad:req.session.dificultad});
+
+
    
-    (async () => {
+    /*(async () => {
         var preguntasbody = {pregunta:pregunta, res1:res1, res2:res2,res3:res3, res4:res4, dificultad:dificultad}
         
         const rawResponse = await fetch(url, {
@@ -33,6 +58,6 @@ router.post("/preguntas",(req, res)=>{
 
         
         
-    });
+    });*/
 })
 module.exports=router;
