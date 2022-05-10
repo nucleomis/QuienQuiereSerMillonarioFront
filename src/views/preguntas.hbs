@@ -20,22 +20,37 @@
                 </div>
                 
                 <div class="d-grid gap-1 mt-3">
-                    <input type="text" class="form-control" placeholder="Nivel de Dificultad: BAJA" disabled="disabled" style="background-color: #56f337;">
+                    <input type="text" class="form-control" placeholder="Nivel de Dificultad: {{dificultad}}" disabled="disabled" style="background-color: #56f337;">
                 </div>
 
                 <div class="d-grid gap-1 mt-3">
-                    <form action="" method="get">
-                        <button type="button" class="btn btn-info btn-lg btn-block">Siguiente</button>
+                       {{#if success_msg}}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{success_msg}}<!--agrego el texto con el string que setee en el controlador-->
+                            <input type="submit" class="btn btn-info btn-lg btn-block">Siguiente</button>
+                            </div>
+                        {{/if}}
+                        
                     </form>
                 </div>
                 <div class="d-grid gap-1 mt-2">
-                   <form action="" method="get">
-                        <button type="button" class="btn btn-success btn-lg btn-block" disabled="disabled">Guardar</button>
-                    </form>
+                    {{#if success_msg}}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{success_msg}}<!--agrego el texto con el string que setee en el controlador-->
+                            <input type="submit" class="btn btn-success btn-lg btn-block">Guardar</button>
+                            </div>
+                        {{else}}
+                        <input type="submit" class="btn btn-success btn-lg btn-block" disabled="disabled">Guardar</button>
+                    {{/if}}
                 </div>
                     
                 
             </form>
+            <form action="/preguntas" method="POST">
+             <input type=" text" name="contador" value="{{numero}}">
+             <input type="submit" class="btn btn-success btn-lg btn-block" >ENVIAR</button>
+            </form>
+
         </card>
     </div>
 </div>
