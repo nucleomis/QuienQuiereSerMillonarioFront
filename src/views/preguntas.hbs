@@ -32,23 +32,23 @@
                 <div class="d-grid gap-1 mt-3">
                     
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <input type="submit" class="btn btn-info btn-lg btn-block" name="siguiente" value="siguiente"></button>
+                            <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="siguiente"></input>
                             </div>
                 </div>        
-                    </form>
+                   
                 
                 <div class="d-grid gap-1 mt-2">
-                    {{#if success_msg}}
+                    {{#if habilitado}}
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <input type="submit" class="btn btn-info btn-lg btn-block" name="siguiente" value="guardar"></button>
+                            <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="guardar"></input>
                             </div>
                         {{else}}
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <input type="submit" class="btn btn-info btn-lg btn-block" name="siguiente" value="guardar" disabled="disabled"></button>
+                            <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="guardar" disabled="disabled"></input>
                             </div>                    
                     {{/if}}
                 </div>
-
+             </form>
         </card>
     </div>
 </div>

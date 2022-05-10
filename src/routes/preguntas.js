@@ -15,9 +15,9 @@ router.post("/preguntas",(req, res)=>{
     var res4=req.body.res4;
     var inicial = req.body.inicial;
     var dificultad = req.body.dificultad;
+    var habilitado = null;
     const url = "https://qqsm-api.herokuapp.com/usuario/preguntas";
 
-    console.log(inicial);
 
     if(!inicial){
       req.session.inicial= 1;
@@ -25,19 +25,25 @@ router.post("/preguntas",(req, res)=>{
       req.session.dificultad=1;
     }
 
-    if(req.body.siguiente){
-      req.session.dificultad = "siguiente";
+    if(req.body.boton=="siguiente"){
+      req.session.listaPreguntas.push({pregunta,res1,res2,res3,res4,dificultad});
+
     }
-    if(req.body.guardar){
-      req.session.dificultad = "guardar";
+    if(req.body.boton==="guardar"){
+      req.session.listaPreguntas.push({pregunta,res1,res2,res3,res4,dificultad});
+      req.session.dificultad += req.session.dificultad;
     }
 
-    req.body.success_msg = "hola";
+    if(req.session.listaPreguntas.length>=3){
+      habilitado = true;
+    }
+    
+    
 
-    req.session.listaPreguntas.push({pregunta,res1,res2,res3,res4,dificultad});
 
+    console.log(req.session.listaPreguntas.length);
 
-    res.render("preguntas",{success_msg:req.body.success_msg,dificultad:req.session.dificultad});
+    res.render("preguntas",{success_msg:req.body.success_msg,dificultad:req.session.dificultad, inicial:true, habilitado:habilitado});
 
 
    
