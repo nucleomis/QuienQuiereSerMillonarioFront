@@ -1,6 +1,6 @@
 <div class="container text-center mt-2">
-    <form action="/nuevapregunta" method="POST">
-        <input type="submit" value="nueva juego" class="btn btn-primary">
+    <form action="/nuevoJuego" method="POST">
+        <input type="submit" value=" + Agregar un Nuevo Juego" class="btn btn-primary">
     </form>
 </div>
 <div class="container-fluid">
@@ -17,6 +17,10 @@
                                 <form action="/borrarJuego" method="POST"><!--pruebo pasar el metodo delete para borrar-->
                                     <input type="hidden" name="id" value="{{id}}"><!--input oculto para donde envia la peticion delete-->
                                     <button  class="btn btn-danger btn-block btn-sm" type="submit">Borrar</button>
+                                </form>
+                                <form action="/juegoAlumno" method="POST"><!--ejecuto el juego en la vista juegoAlumno-->
+                                   
+                                    <input type="submit" value="EJECUTAR" class="btn btn-primary mb-2">
                                 </form>
                             </div>
                         </div>
