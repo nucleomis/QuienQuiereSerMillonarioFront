@@ -1,6 +1,6 @@
 <div class="container text-center mt-2">
-    <form action="/nuevapregunta" method="POST">
-        <input type="submit" value="nueva juego" class="btn btn-primary">
+    <form action="/nuevoJuego" method="POST">
+        <input type="submit" value=" + Agregar un Nuevo Juego" class="btn btn-primary">
     </form>
 </div>
 <div class="container-fluid">
@@ -10,13 +10,17 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title d-flex justify-content-between">
-                                {{nombreJuego}}<a href="/games/editar/{{id}}" ><i class="fas fa-edit"></i></a>
+                                {{nombreJuego}} <a href="/games/editar/{{id}}" ><i class="fas fa-edit"></i></a>
                             </h4>
                             <p>{{fechaCreacion}}</p>
                             <div class="d-grid gap-1 mt-3">
-                                <form action="/games/borrar/{{id}}?_method=DELETE" method="POST"><!--pruebo pasar el metodo delete para borrar-->
-                                    <input type="hidden" name="_method" value="DELETE"><!--input oculto para donde envia la peticion delete-->
+                                <form action="/borrarJuego" method="POST"><!--pruebo pasar el metodo delete para borrar-->
+                                    <input type="hidden" name="id" value="{{id}}"><!--input oculto para donde envia la peticion delete-->
                                     <button  class="btn btn-danger btn-block btn-sm" type="submit">Borrar</button>
+                                </form>
+                                <form action="/juegoAlumno" method="POST"><!--ejecuto el juego en la vista juegoAlumno-->
+                                   
+                                    <input type="submit" value="EJECUTAR" class="btn btn-primary mb-2">
                                 </form>
                             </div>
                         </div>

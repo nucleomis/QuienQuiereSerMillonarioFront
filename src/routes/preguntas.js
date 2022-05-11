@@ -1,9 +1,9 @@
 const express = require("express");
 const fetch = require("node-fetch");
 const router = express.Router();
-router.post("/nuevapregunta",(req,res)=>{
+router.post("/nuevoJuego",(req,res)=>{
   console.log("redireccionando a nueva pregunta");
-  res.render("preguntas");
+  res.render("nuevoJuego");
 })
 
 
@@ -13,9 +13,13 @@ router.post("/preguntas",(req, res)=>{
     var res2=req.body.res2;
     var res3=req.body.res3;
     var res4=req.body.res4;
+    var pista1=req.body.pista1;
+    var pista2=req.body.pista2;
     var inicial = req.body.inicial;
     var dificultad = req.body.dificultad;
     var habilitado = null;
+    var finalizar = null;
+    var miprimeravez = {pregunta:pregunta,res1:res1,res2:res2,res3:res3,res4:res4,pista1:pista1,pista2:pista2,dificultad:dificultad}
     const url = "https://qqsm-api.herokuapp.com/usuario/preguntas";
 
     if(!req.body.numeroPregunta){
@@ -31,26 +35,40 @@ router.post("/preguntas",(req, res)=>{
       req.session.dificultad=1;
     }
 
-    if(req.body.boton=="siguiente"){
-      req.session.listaPreguntas.push({pregunta,res1,res2,res3,res4,dificultad});
+    if(req.body.boton=="SIGUIENTE"){
+      req.session.listaPreguntas.push({pregunta,res1,res2,res3,res4,pista1,pista2,dificultad});
       contadorPreguntas+=1;
     }
-    if(req.body.boton==="guardar"){
-      req.session.listaPreguntas.push({pregunta,res1,res2,res3,res4,dificultad});
-      req.session.dificultad += req.session.dificultad;
-      contadorPreguntas = 0;
+    if(req.body.boton==="GUARDAR"){
+      req.session.listaPreguntas.push({pregunta,res1,res2,res3,res4,pista1,pista2,dificultad});
+      req.session.dificultad += 1;
+      contadorPreguntas = 1;
+      habilitado = null;
     }
 
-    if(req.session.listaPreguntas.length>=3){
+    if(req.body.boton==="FINALIZAR"){
+      (async () => {
+        const rawResponse = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(miprimeravez)
+        });
+        const content = await rawResponse.json();
+        res.render("panelPrincipal")
+      })();
+    }
+
+    if(req.session.dificultad==3){
+      finalizar = true;
+    }
+
+    if(contadorPreguntas>=4){
       habilitado = true;
     }
-    
-    
-
-
-    console.log(req.session.listaPreguntas.length);
-
-    res.render("preguntas",{success_msg:req.body.success_msg,dificultad:req.session.dificultad, inicial:true, habilitado:habilitado, numeroPregunta:contadorPreguntas});
+    res.render("preguntas",{success_msg:req.body.success_msg,dificultad:req.session.dificultad, inicial:true, habilitado:habilitado, numeroPregunta:contadorPreguntas, finalizar:finalizar});
 
 
    
@@ -72,5 +90,29 @@ router.post("/preguntas",(req, res)=>{
         
         
     });*/
-})
+});
+
+router.post("/borrarJuego",(req,res)=>{
+  var id = req.body.id;
+  const url = "https://qqsm-api.herokuapp.com/juego/borrarJuego";
+  var cuerpo = {id:id};
+
+  (async () => {
+    const rawResponse = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(cuerpo)
+    });
+    const content = await rawResponse.json();
+
+    req.session.juegos = content.data;
+
+    console.log("usuario: "+ content.data);
+
+    res.redirect("/index");
+})();
+});
 module.exports=router;
