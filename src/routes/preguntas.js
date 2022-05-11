@@ -72,5 +72,29 @@ router.post("/preguntas",(req, res)=>{
         
         
     });*/
-})
+});
+
+router.post("/borrarJuego",(req,res)=>{
+  var id = req.body.id;
+  const url = "https://qqsm-api.herokuapp.com/juego/borrarJuego";
+  var cuerpo = {id:id};
+
+  (async () => {
+    const rawResponse = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(cuerpo)
+    });
+    const content = await rawResponse.json();
+
+    req.session.juegos = content.data;
+
+    console.log("usuario: "+ content.data);
+
+    res.redirect("/index");
+})();
+});
 module.exports=router;
