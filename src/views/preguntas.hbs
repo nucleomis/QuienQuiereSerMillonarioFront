@@ -35,24 +35,31 @@
                 <input type="hidden" name="numeroPregunta" value="{{numeroPregunta}}">
             <div class="d-grid gap-1 mt-3">
                 {{#if dificultad}}
-                    <input type="text" class="form-control" placeholder="Nivel de Dificultad: {{dificultad}}" disabled="disabled" style="background-color: #031fbe;">
+                    <input type="text" class="form-control" placeholder="Nivel de Dificultad: {{dificultad}}" disabled="disabled" style="background-color: #56f337;">
                 {{else}}
-                    <input type="text" class="form-control" placeholder="Nivel de Dificultad: 1" disabled="disabled" style="background-color: #031fbe;">
+                    <input type="text" class="form-control" placeholder="Nivel de Dificultad: 1" disabled="disabled" style="background-color: #56f337;">
                 {{/if}}
             </div>
 
             <div class="d-grid gap-1 mt-2">
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="SIGUIENTE"></input>
-            
-            {{#if habilitado}}
-                <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="FINALIZAR"></input>
-            {{else}}
-                <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="GUARDAR" disabled="disabled"></input>
-            </div>                    
-            {{/if}}
-            </div>
-        </form>
-    </card>
-</div>
+                
+                    
+                   
+                
+                
+                    {{#if habilitado}}
+                            
+                            <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="GUARDAR"></input>
+                            
+                        {{else}}
+                            
+                            <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="GUARDAR" disabled="disabled"></input>
+                            </div>                    
+                    {{/if}}
+                </div>
+             </form>
+        </card>
+    </div>
 </div>
