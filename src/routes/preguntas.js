@@ -1,9 +1,9 @@
 const express = require("express");
 const fetch = require("node-fetch");
 const router = express.Router();
-router.post("/nuevapregunta",(req,res)=>{
+router.post("/nuevoJuego",(req,res)=>{
   console.log("redireccionando a nueva pregunta");
-  res.render("preguntas");
+  res.render("nuevoJuego");
 })
 
 
