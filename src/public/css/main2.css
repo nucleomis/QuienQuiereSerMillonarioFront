@@ -15,13 +15,13 @@
 
   /* Grosor de la línea que pasa a través
      de los botones */
-  --grosor: 7px;
+  --grosor: 15px;
 
   /* Altura de los botones */
-  --height: 35px;
+  --height: 60px;
 
   /* Anchura máxima del contenedor principal */
-  --width: 800px;
+  --width: 1400px;
 
   /* El relleno de los botones en porcentaje
      que será directamente proporcional a la 
@@ -48,6 +48,7 @@
   /* Imágenes de fondo de los botones */
   --fondoA: linear-gradient(90deg, rgba(14, 62, 190, 0.6) 20%, rgba(7, 31, 95, 0.9) 80%);
   --fondoB: linear-gradient(90deg, rgba(7, 31, 95, 0.9) 20%, rgba(14, 62, 190, 0.6) 80%);
+  --fondoc: linear-gradient(90deg, rgba(225, 230, 245, 0.6) 20%, rgba(225, 228, 238, 0.9) 80%);
 }
 
 /* Contenedor principal */
@@ -67,7 +68,7 @@
 /* Margen superior del contenedor
    de los botones, menos el primer contenedor */
 .millonario__item:not(:first-of-type) {
-  margin-top: 10px;
+  margin-top: 100px;
 }
 
 /* Línea cilíndrica que atraviesa los botones de opciones de
@@ -117,6 +118,17 @@
 }
 
 .opciones__item {
+  --padding: 10px;
+  --divisor: 4;
+
+  transition: 300ms ease;
+  flex-shrink: 1;
+  flex-grow: 1;
+  flex-basis: 50%;
+  position: relative;
+  min-height: var(--height);
+}
+.opciones__pregunta {
   --padding: 50px;
   --divisor: 4;
 
@@ -246,4 +258,15 @@
 /* Colores */
 .amarillo {
   color: var(--color-terciario);
+}
+.formato{
+  
+  margin: auto;
+  text-align: center;
+  border-radius: 40%;
+  background-color:lightskyblue;
+  height: 40px;
+  width: 700px;
+  border-color: #0e3ebe;
+  font-family: 'Times New Roman', Times, serif;
 }
