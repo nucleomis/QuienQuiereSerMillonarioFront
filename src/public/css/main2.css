@@ -270,3 +270,14 @@
   border-color: #0e3ebe;
   font-family: 'Times New Roman', Times, serif;
 }
+.boton_pista{
+  margin: auto;
+  text-align: center;
+  border-radius: 25px;
+  height: 60px;
+  width: 50px;
+  background-color:blue;
+  color:yellow;
+  font-family: 'Times New Roman', Times, serif;
+
+}
