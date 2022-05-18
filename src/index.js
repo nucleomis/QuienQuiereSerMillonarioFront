@@ -55,6 +55,7 @@ app.use(require("./routes/panelPrincipal"));
 app.use(require("./routes/formulario"));
 app.use(require("./routes/preguntas"));
 app.use(require("./routes/juegoAlumno"));
+app.use(require("./routes/participante"));
 
 //archivos estaticos
 app.use(express.static(path.join(__dirname, "public")));

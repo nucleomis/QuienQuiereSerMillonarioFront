@@ -9,7 +9,7 @@ router.post("/registrar",(req, res)=>{
     var email=req.body.email;
     var password = req.body.password;
     var cuerpo = {nombre:nombre, apellido:apellido, direccion:direccion,user: user, email:email, password: password}
-    console.log(cuerpo);
+    console.log(nombre);
     const url = "https://qqsm-api.herokuapp.com/usuario/registrar";
     console.log('ingresando a fetch');
     console.log(apellido);

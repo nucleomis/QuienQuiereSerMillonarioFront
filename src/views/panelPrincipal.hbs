@@ -1,3 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-dark d-flex" style="background-color:lightslategrey;">
+  <div class="container">
+    <div class="container-fluid d-flex">
+      <a class="navbar-brand" href="/">Juegos guardados o crear nuevo Juego</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/"><i class="bi bi-arrow-left-circle" style="font-size: 25px;"></i></a>
+          </li>    
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</nav>
 <div class="container text-center mt-2">
     <form action="/nuevoJuego" method="POST">
         <input type="submit" value=" + Agregar un Nuevo Juego" class="btn btn-primary">
@@ -18,7 +37,7 @@
                                     <input type="hidden" name="id" value="{{id}}"><!--input oculto para donde envia la peticion delete-->
                                     <button  class="btn btn-danger btn-block btn-sm" type="submit">Borrar</button>
                                 </form>
-                                <form action="/juegoAlumno" method="POST"><!--ejecuto el juego en la vista juegoAlumno-->
+                                <form action="/participante" method="POST"><!--ejecuto el juego en la vista juegoAlumno-->
                                    
                                     <input type="submit" value="EJECUTAR" class="btn btn-primary mb-2">
                                 </form>

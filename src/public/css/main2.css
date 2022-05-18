@@ -18,7 +18,7 @@
   --grosor: 15px;
 
   /* Altura de los botones */
-  --height: 60px;
+  --height: 50px;
 
   /* Anchura máxima del contenedor principal */
   --width: 1400px;
@@ -271,13 +271,22 @@
   font-family: 'Times New Roman', Times, serif;
 }
 .boton_pista{
-  margin: auto;
+  text-align: center;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 2% solid #999;
+  /*margin: auto;
   text-align: center;
   border-radius: 25px;
   height: 60px;
   width: 50px;
   background-color:blue;
   color:yellow;
-  font-family: 'Times New Roman', Times, serif;
-
+  font-family: 'Times New Roman', Times, serif;*/
+}
+.boton{
+  text-align: center;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 2% solid #999;
 }
