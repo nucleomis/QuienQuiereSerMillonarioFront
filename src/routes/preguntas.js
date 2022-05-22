@@ -7,6 +7,19 @@ router.post("/nuevoJuego",(req,res)=>{
 })
 
 
+router.post("/nuevojuego",(req,res)=>{
+
+  var nombreJuego = req.body.nombreJuego;
+
+  req.session.nombreJuego = nombreJuego;
+
+  console.log("redireccionando a nueva pregunta");
+
+  res.render("preguntas", {nombreJuego: nombreJuego})
+
+});
+
+
 router.post("/preguntas",(req, res)=>{
     var pregunta=req.body.pregunta;
     var res1=req.body.res1;
@@ -22,6 +35,7 @@ router.post("/preguntas",(req, res)=>{
     var miprimeravez = {pregunta:pregunta,res1:res1,res2:res2,res3:res3,res4:res4,pista1:pista1,pista2:pista2,dificultad:dificultad}
     const url = "https://qqsm-api.herokuapp.com/usuario/preguntas";
 
+
     if(!req.body.numeroPregunta){
       var contadorPreguntas = 1;
     }
@@ -32,7 +46,7 @@ router.post("/preguntas",(req, res)=>{
     if(!inicial){
       req.session.inicial= 1;
       req.session.listaPreguntas=[];
-      req.session.dificultad=1;
+      req.session.dificultad=0;
     }
 
     if(req.body.boton=="SIGUIENTE"){
