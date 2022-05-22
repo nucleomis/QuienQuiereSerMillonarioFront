@@ -2,27 +2,10 @@ const express = require("express");
 const fetch = require("node-fetch");
 const router = express.Router();
 router.post("/participante",(req,res)=>{
-
   var id = req.body.id;
-  const url = "https://qqsm-api.herokuapp.com/juego/borrarJuego";
-  var cuerpo = {id:id};
+  req.session.idJuego = id;
+  console.log("redireccionando a Pantalla del Juego participante con el id de juego: "+id);
+  res.render("participante",{idJuego:req.session.idJuego});
+})
 
-  (async () => {
-    const rawResponse = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(cuerpo)
-    });
-    const content = await rawResponse.json();
-
-    req.session.juego = content.data;
-
-    console.log("juego: "+ content.data);
-
-    res.redirect("/juegoAlumno");
-})();
-});
-module.exports=router;
+module.exports = router;

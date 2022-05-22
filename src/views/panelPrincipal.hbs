@@ -38,7 +38,7 @@
                                     <button  class="btn btn-danger btn-block btn-sm" type="submit">Borrar</button>
                                 </form>
                                 <form action="/participante" method="POST"><!--ejecuto el juego en la vista juegoAlumno-->
-                                   
+                                    <input type="hidden" name="id" value="{{id}}">
                                     <input type="submit" value="EJECUTAR" class="btn btn-primary mb-2">
                                 </form>
                             </div>
