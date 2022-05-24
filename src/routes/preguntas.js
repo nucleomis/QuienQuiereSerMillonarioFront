@@ -1,13 +1,14 @@
 const express = require("express");
 const fetch = require("node-fetch");
 const router = express.Router();
+
 router.post("/nuevoJuego",(req,res)=>{
   console.log("redireccionando a nueva pregunta");
   res.render("nuevoJuego");
 })
 
 
-router.post("/nuevojuego",(req,res)=>{
+router.post("/formulariopreguntas",(req,res)=>{
 
   var nombreJuego = req.body.nombreJuego;
 
@@ -15,7 +16,7 @@ router.post("/nuevojuego",(req,res)=>{
 
   console.log("redireccionando a nueva pregunta");
 
-  res.render("preguntas", {nombreJuego: nombreJuego})
+  res.render("preguntas", {nombreJuego: nombreJuego});
 
 });
 
@@ -82,28 +83,8 @@ router.post("/preguntas",(req, res)=>{
     if(contadorPreguntas>=4){
       habilitado = true;
     }
-    res.render("preguntas",{success_msg:req.body.success_msg,dificultad:req.session.dificultad, inicial:true, habilitado:habilitado, numeroPregunta:contadorPreguntas, finalizar:finalizar});
+    res.render("preguntas",{success_msg:req.body.success_msg,dificultad:req.session.dificultad, inicial:true, habilitado:habilitado, numeroPregunta:contadorPreguntas, finalizar:finalizar, nombreJuego:req.session.nombreJuego});
 
-
-   
-    /*(async () => {
-        var preguntasbody = {pregunta:pregunta, res1:res1, res2:res2,res3:res3, res4:res4, dificultad:dificultad}
-        
-        const rawResponse = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(preguntasbody)
-         
-        });
-        console.log("Ingreso Exitoso")
-        res.render("preguntas")
-
-        
-        
-    });*/
 });
 
 router.post("/borrarJuego",(req,res)=>{
