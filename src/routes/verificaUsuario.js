@@ -29,12 +29,12 @@ router.post("/index",(req, res)=>{
               console.log(usuario);
               //redirecciono a la pagina que quiero y envio los datos obtenidos
               console.log(usuario.data.juegos);
-              req.session.nombreUsuario = usuario.data.nombre;
-              req.session.apellidoUsuario = usuario.data.apellido;
+              req.session.nombre = usuario.data.nombre;
+              req.session.apellido = usuario.data.apellido;
               req.session.user = usuario.data.user;
               req.session.content = usuario;
               req.session.juegos = usuario.data.juegos;
-              res.render("panelPrincipal", {content: usuario, juegos: usuario.data.juegos, nombreUsuario:nombreUsuario,apellidoUsuario:apellidoUsuario,user:user});
+              res.render("panelPrincipal", {content: usuario, juegos: usuario.data.juegos, nombre:usuario.data.nombre,apellido:usuario.data.apellido,user:usuario.data.user});
             })()
         }
         else if(req.session.content){
