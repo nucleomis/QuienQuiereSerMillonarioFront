@@ -5,16 +5,16 @@ router.post("/votante",(req,res)=>{
   var id = req.body.id;
   req.session.idJuego = id;
   console.log("redireccionando a Pantalla de Votante ");
-  res.render("votante",{idJuego:req.session.idJuego});
+  res.render("votante");
 })
 
-//document.getElementById("idbtn").addEventListener("click", comodin);
+//formvotante.getElementById("idbtn").addEventListener("click", comodin);
 
 
 function comodin() {
-    
+    formvotante = enabled
     router.post("/participante", (req, res)=>{
-        const {conexion}=req.body;
+        const {conexion}=req.session.idJuego;
             
         if(conexion==1){
             
