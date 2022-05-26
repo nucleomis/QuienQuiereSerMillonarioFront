@@ -8,11 +8,11 @@ router.post("/votante",(req,res)=>{
   res.render("votante");
 })
 
-//document.getElementById("idbtn").addEventListener("click", comodin);
+//formvotante.getElementById("idbtn").addEventListener("click", comodin);
 
 
 function comodin() {
-    
+    formvotante = enabled
     router.post("/participante", (req, res)=>{
         const {conexion}=req.session.idJuego;
             
