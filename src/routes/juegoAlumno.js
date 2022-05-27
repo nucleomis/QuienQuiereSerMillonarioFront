@@ -3,13 +3,12 @@ const fetch = require("node-fetch");
 const router = express.Router();
 
 router.post("/juegoAlumno",(req,res)=>{
-  var idJuego = req.session.idJuego;
-  var nombreParticipante = req.body.nombreParticipante;
-
-  //tomamos en id del juego recibido y llamamos al endpoint que nos construye el juego
+  //envio el nombre del participante de la vista participante.hbs
+  req.session.nombreParticipante = req.body.nombreParticipante;
+  
   
   console.log("redireccionando a Pantalla de Juego alumno");
-  res.render("juegoAlumno");
+  res.render("juegoAlumno",{idJuego:req.session.idJuego, nombreParticipante:req.session.nombreParticipante});
 })
 
 module.exports = router;
