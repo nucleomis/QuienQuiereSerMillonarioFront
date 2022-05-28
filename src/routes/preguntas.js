@@ -34,7 +34,7 @@ router.post("/preguntas",(req, res)=>{
     var habilitado = null;
     var finalizar = null;
     var miprimeravez = {pregunta:pregunta,res1:res1,res2:res2,res3:res3,res4:res4,pista1:pista1,pista2:pista2,dificultad:dificultad}
-    const url = "https://qqsm-api.herokuapp.com/usuario/preguntas";
+    const url = "https://qqsm-api.herokuapp.com/juego/crearJuego";
 
 
     if(!req.body.numeroPregunta){
