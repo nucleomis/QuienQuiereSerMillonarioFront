@@ -1,11 +1,11 @@
 const express = require("express");
 const fetch = require("node-fetch");
 const router = express.Router();
-router.post("/paneljugador",(req, res)=>{
+router.post("/juegoAlumno",(req, res)=>{
     //res.render("index");//para renderizar y enviar el archivo con el nombre y la extencion previamente configurada como .hbs
     
     const url = "https://qqsm-api.herokuapp.com/juego/crearJuego";
-    console.log('ingresando a fetch');
+    console.log('ingresando a fetchito');
 
 const rawResponse = await fetch(url, {
     method: 'POST'
