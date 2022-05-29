@@ -4,9 +4,7 @@ const router = express.Router();
 
 router.post("/votantes1",(req, res)=>{
   //res.render("index");//para renderizar y enviar el archivo con el nombre y la extencion previamente configurada como .hbs
-  var usuario = req.body.usuario;
-  var password = req.body.password;;
-  const url = "https://qqsm-api.herokuapp.com/usuario/verificarUsuario"
+  const url = "https://qqsm-api.herokuapp.com/juego/iniciojuego"
   console.log('ingresando a fetchito');
 
 (async () => {
@@ -16,23 +14,21 @@ router.post("/votantes1",(req, res)=>{
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({usuario: usuario, password: password})
   });
 console.log("llego aqui");
 const question = await rawResponse.json();
 
 console.log(question);
 //redirecciono a la pagina que quiero y envio los datos obtenidos
-console.log(question.data.idProfesor, question.data.nombreJuego);
-req.session.nombre = usuario.data.nombre;
-req.session.apellido = usuario.data.apellido;
-req.session.user = usuario.data.user;
-req.session.content = usuario;
-req.session.juegos = usuario.data.juegos;
+
+req.session.res1 = usuario.data.res1;
+req.session.res2 = usuario.data.res2;
+req.session.res3 = usuario.data.res3;
+req.session.res4 = usuario.dato.res4;
+req.session.pista1 = usuario.data.pista1;
+req.session.pista2 = usuario.data.pista2;
 
 });
 })
-router.get("/index",(req, res)=>{
-  res.render("panelPrincipal", {content: req.session.content, juegos:req.session.juegos});
-});
+
 module.exports = router;

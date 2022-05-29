@@ -42,7 +42,7 @@
 <form>
    <div class="form-group b">
       <div class="d-grid gap-3 mt-6 ">    
-        <input type="text" name="juego" class="form-control" autofocus><span class="border-3"></span>
+        <input type="text" name="pregunta" class="form-control" value="{{pregunta}}"><span class="border-3"></span>
       </div>               
     </div>
 </form>
@@ -54,11 +54,11 @@
         <div class="millonario__item">
           <div class="opciones">
             <div class="opciones__item">
-              <button id="a" class="button fondoA"><span class="amarillo">A:</span></button>
+              <button id="a" class="button fondoA"><span class="amarillo">A: {{res1}}</span></button>
             </div>
       
             <div class="opciones__item">
-              <button id="b" class="button fondoB"><span class="amarillo">B:</span></button>
+              <button id="b" class="button fondoB"><span class="amarillo">B: {{res2}}</span></button>
             </div>
           </div>
         </div>
@@ -67,11 +67,11 @@
         <div class="millonario__item">
           <div class="opciones">
             <div class="opciones__item">
-              <button id="c" class="button fondoA"><span class="amarillo">C:</span></button>
+              <button id="c" class="button fondoA"><span class="amarillo">C: {{res3}}</span></button>
             </div>
             
             <div class="opciones__item">
-              <button id="d" class="button fondoB"><span class="amarillo">D:</span>Hola mi respuesta es larga para verificar comom estan saliendo las cosas</button>
+              <button id="d" class="button fondoB"><span class="amarillo">D: {{res4}}</span></button>
             </div>
           </div>
         </div>
@@ -80,7 +80,6 @@
 <footer>
   <form class="boton_pista" action="/juegoAlumno" method="POST">
     <div class="boton">
-     
       <input type="submit" value="Mostrar Solucion" class="btn btn-primary mb-2">
       <input type="submit" value="Siguiente Pregunta" class="btn btn-primary mb-2">
     </div>
