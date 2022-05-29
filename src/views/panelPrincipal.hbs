@@ -18,14 +18,19 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white;">
                   Cerrar sesion  
                 </a>
-                <form action="cerrar" method="post"></form>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                <form style="background-color: lightslategrey;"></form>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: lightslategrey; color:white">
+                    <li style="text-align:center"><i class="bi bi-person-fill" style="font-size: 150%; background-color:blue"></i></li>
                     <li><a class="dropdown-item" href="#">Nombre Administrador: {{nombre}}</a></li>
-                    <li><a class="dropdown-item" href="#">Email: {{email}}</a></li>
+                    <li><a class="dropdown-item" href="#">Apellido Administrador: {{apellido}}</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="">Cerra Sesion</a></li>
+                    <form action="/cerrar" method="post" style="text-align: center;">
+                      <input type="submit" value="Cerrar Sesion" style="background-color: lightslategrey;">
+                    </form><!--<input type="submit" value="Cerrar Sesion">-->
                 </ul>
             </li>
+
         </ul>
       </div>
       <!--<div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
