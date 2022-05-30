@@ -38,6 +38,15 @@
   </div>
 </nav>
 <br></br>
+
+{{#if dato}}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{dato}}<!--agrego el texto con el string que setee en el controlador-->
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{{/if}}
+
+<br></br>
 <div class="container text-start">
         <h2 style="color: aliceblue; -webkit-text-stroke: 2px black;">puntos: {{puntaje}}</h2>
                     

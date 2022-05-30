@@ -51,21 +51,31 @@ router.post("/respuesta",(req,res)=>{
 
   if(respuesta===correcta){
     if(req.session.nivel===1){
-      req.session.indicepregunta +=1;
+      
       req.session.puntaje += 7;
+      var dato = "Respuesta correcta";
     }
     if(req.session.nivel===2){
-      req.session.indicepregunta +=1;
+      
       req.session.puntaje += 10;
+      var dato = "Respuesta correcta";
     }
     if(req.session.nivel===3){
-      req.session.indicepregunta +=1;
+      
       req.session.puntaje += 14;
+      var dato = "Respuesta correcta";
     }
+    
+  }
+  else{
+    dato = "Respuesta incorrecta!";
   }
   var datosjuego = req.session.juegoiniciado.data;
   res.render("juegoAlumno",
     { idJuego:req.session.idJuego,
+      puntaje: req.session.puntaje, 
+      dato: dato,
+      idJuego:req.session.idJuego,
       puntaje: req.session.puntaje, 
       nombreParticipante:req.session.nombreParticipante, 
       pregunta:datosjuego.preguntas[req.session.indicepregunta-1].pregunta,
