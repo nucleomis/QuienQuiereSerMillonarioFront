@@ -5,11 +5,12 @@ const router = express.Router();
 router.post("/jugando",(req,res)=>{
   
   var id=req.body.id;
-  var cuerpo = {id:22}
+  var cuerpo = {id:id}
   
   const url = "https://qqsm-api.herokuapp.com/juego/iniciojuego";
   (async () => {
     const rawResponse = await fetch(url, {
+    
       method: 'POST',
       headers: {
         'Accept': 'application/json',
