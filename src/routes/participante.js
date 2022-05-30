@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 const router = express.Router();
 
 router.post("/jugando",(req,res)=>{
-  
+  req.session.idJuego = req.body.id;
   var id=req.body.id;
   var cuerpo = {id:id}
   
@@ -23,18 +23,8 @@ router.post("/jugando",(req,res)=>{
   
   req.session.juegoiniciado = content;
     req.session.indicepregunta = 0;
-  
-  //req.session.res1 = content.data.preguntas.respuestas.respuesta;
-  //req.session.res2 = content.data.preguntas.respuestas.respuesta;
-  //req.session.res3 = content.data.preguntas.respuestas.respuesta;
-  //req.session.res4 = content.data.preguntas.respuestas.respuesta;
-
-
-  //console.log(content)
   res.render("participante")
   
   })();
   });
-
-
 module.exports = router;
