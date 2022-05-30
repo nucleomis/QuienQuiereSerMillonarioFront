@@ -87,4 +87,22 @@ router.post("/respuesta",(req,res)=>{
   
 });
 
+router.post("/solucion",(req,res)=>{
+  var dato = "la respuesta correcta es: "+req.session.respuesta;
+  var datosjuego = req.session.juegoiniciado.data;
+  res.render("juegoAlumno",
+    { idJuego:req.session.idJuego,
+      puntaje: req.session.puntaje, 
+      dato: dato,
+      idJuego:req.session.idJuego,
+      puntaje: req.session.puntaje, 
+      nombreParticipante:req.session.nombreParticipante, 
+      pregunta:datosjuego.preguntas[req.session.indicepregunta-1].pregunta,
+      res1:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[0].respuesta,
+      res2:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[1].respuesta,
+      res3:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[2].respuesta,
+      res4:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[3].respuesta,
+    });
+
+});
 module.exports = router;
