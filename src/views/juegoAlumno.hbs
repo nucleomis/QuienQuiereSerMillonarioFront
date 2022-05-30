@@ -48,18 +48,25 @@
       </div>               
    </div>
 
-<form style="text-align:justify;" class="mt-3">
+<div style="text-align:justify;" class="mt-3">
   <div class="millonario">
      
         <!-- Primera fila de botones -->
         <div class="millonario__item">
           <div class="opciones">
             <div class="opciones__item">
-              <button id="a" class="button fondoA"><span class="amarillo">A: {{res1}}</span></button>
+              <form action="/respuesta" method="post">
+                <input type="hidden" name="respuesta" value={{res1}}>
+                <button name="boton" id="a" class="button fondoA"><span class="amarillo" value={{res1}}>A: {{res1}}</span></button>
+              </form>
             </div>
       
             <div class="opciones__item">
-              <button id="b" class="button fondoB"><span class="amarillo">B: {{res2}}</span></button>
+              <form action="/respuesta" method="post">
+                <input type="hidden" name="respuesta" value={{res2}}>
+                <button name="boton" id="b" class="button fondoA"><span class="amarillo" value={{res2}}>B: {{res2}}</span></button>
+              </form>
+
             </div>
           </div>
         </div>
@@ -67,17 +74,23 @@
         <!-- Segunda fila de botones -->
         <div class="millonario__item">
           <div class="opciones">
-            <div class="opciones__item">
-              <button id="c" class="button fondoA"><span class="amarillo">C: {{res3}}</span></button>
-            </div>
             
             <div class="opciones__item">
-              <button id="d" class="button fondoB"><span class="amarillo">D: {{res4}}</span></button>
+              <form action="/respuesta" method="post">
+                <input type="hidden" name="respuesta" value={{res3}}>
+                <button name="boton" id="c" class="button fondoA"><span class="amarillo" value={{res3}}>C: {{res3}}</span></button>
+              </form>            </div>
+            
+            <div class="opciones__item">
+              <form action="/respuesta" method="post">
+                <input type="hidden" name="respuesta" value={{res4}}>
+                <button name="boton" id="d" class="button fondoA"><span class="amarillo" value={{res4}}>D: {{res4}}</span></button>
+              </form>   
             </div>
           </div>
         </div>
     </div>
-</form>
+</div>
 <footer>
   <form class="boton_pista" action="/juegoAlumno" method="POST">
     <div class="boton">

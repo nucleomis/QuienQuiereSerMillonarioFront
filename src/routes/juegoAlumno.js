@@ -45,18 +45,25 @@ router.post("/respuesta",(req,res)=>{
   var respuesta = req.body.respuesta;
   var correcta = req.session.respuesta;
 
+  console.log("capturo la respuesta correcta: "+ correcta);
+  console.log("capturo los botones: "+req.body.respuesta);
+
+
   if(respuesta===correcta){
     if(req.session.nivel===1){
+      req.session.indicepregunta +=1;
       req.session.puntaje += 7;
     }
     if(req.session.nivel===2){
+      req.session.indicepregunta +=1;
       req.session.puntaje += 10;
     }
     if(req.session.nivel===3){
+      req.session.indicepregunta +=1;
       req.session.puntaje += 14;
     }
   }
-
+  var datosjuego = req.session.juegoiniciado.data;
   res.render("juegoAlumno",
     { idJuego:req.session.idJuego,
       puntaje: req.session.puntaje, 
