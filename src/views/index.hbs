@@ -14,7 +14,12 @@
   </div>
 </nav>
 
-
+{{#if errorMesnsaje}}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{errorMesnsaje}}<!--agrego el texto con el string que setee en el controlador-->
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{{/if}}
 <div class="container-fluid" id="container-fluid">
     
             <div class="container-form sign-up">

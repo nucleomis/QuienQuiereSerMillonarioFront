@@ -2,6 +2,8 @@ const express = require("express");
 const fetch = require("node-fetch");
 const router = express.Router();
 router.post("/index",(req, res)=>{
+  console.log("usuario: "+req.session.usuario);
+  
     //res.render("index");//para renderizar y enviar el archivo con el nombre y la extencion previamente configurada como .hbs
     var usuario = req.body.usuario;
     var password = req.body.password;
@@ -20,6 +22,10 @@ router.post("/index",(req, res)=>{
         const content = await rawResponse.json();
         if(content.status == "ok" && content.data.dpoLogin === true){
             console.log("usuario y contraseña correctos");
+
+
+            //guardo el nombre de usuario en sesion
+            req.session.nombreUsuario = usuario;
             //llamo a otro endpoint para obtener los datos del usuario
             (async () => {
               const rawResponse = await fetch(url2+content.data.dpoId, {
@@ -37,15 +43,17 @@ router.post("/index",(req, res)=>{
               res.render("panelPrincipal", {content: usuario, juegos: usuario.data.juegos, nombre:usuario.data.nombre,apellido:usuario.data.apellido,user:usuario.data.user});
             })()
         }
+        
         else if(req.session.content){
           res.render("panelPrincipal", {content: req.session.content, juegos:req.session.juegos, nombreUsuario:nombreUsuario,apellidoUsuario:apellidoUsuario,user:user}); 
         }
-
         else{
-          res.render("index", {messaje: "Usuario o contraseña incorrectos"});
+          res.render("index", {errorMesnsaje: "Usuario o contraseña incorrectos"});
         }
       })();
-});
+ 
+
+    });
 
 router.get("/index",(req, res)=>{
   res.render("panelPrincipal", {content: req.session.content, juegos:req.session.juegos});
