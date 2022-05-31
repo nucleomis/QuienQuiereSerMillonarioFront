@@ -86,14 +86,22 @@
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="SIGUIENTE"></input> 
                     {{#if habilitado}}
-                            
-                            <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="GUARDAR"></input>
+                        {{#if finalizar}}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="FINALIZAR"></input>
+                            </div>
                             
                         {{else}}
-                            
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="GUARDAR"></input>
+                            </div>
+                        {{/if}}
+                    {{else}}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="GUARDAR" disabled="disabled"></input>
-                            </div>                    
+                        </div>                    
                     {{/if}}
+                    
                 </div>
              </form>
         </card>

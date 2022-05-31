@@ -28,11 +28,11 @@ router.post("/preguntas", (req, res)=>{
     var res2=req.body.res2;
     var res3=req.body.res3;
     var res4=req.body.res4;
-    var pista1=req.body.pista1;
-    var pista2=req.body.pista2;
+    var pista1={pista:req.body.pista1};
+    var pista2={pista:req.body.pista2};
     var inicial = req.body.inicial;
     
-    var dificultad = req.body.dificultad;
+    //var dificultad = req.body.dificultad;
     var habilitado = null;
     var finalizar = null;
     var respuesta1 = {respuesta:res1,correcto:1};
@@ -46,18 +46,12 @@ router.post("/preguntas", (req, res)=>{
     respuestas.push(respuesta3);
     respuestas.push(respuesta4);
 
-    var pistas = {pista1,pista2};
+    var pistas = [];
+    pistas.push(pista1);
+    pistas.push(pista2);
     var idProfesor = req.session.idProfesor;
     
-    var preguntas = [{pregunta:pregunta,dificultad:dificultad,respuestas:respuestas,pistas:pistas}];
-    var juegoArmado = {idProfesor:idProfesor,nombreJuego:nombreJuego,preguntas:preguntas};
-
-    console.log(juegoArmado);
-    console.log(juegoArmado.preguntas[0].respuestas)
     
-
-
-    var miprimeravez = {juegoArmado:juegoArmado}
     const url = "https://qqsm-api.herokuapp.com/juego/crearJuego";
 
 
@@ -69,28 +63,35 @@ router.post("/preguntas", (req, res)=>{
     }
 
     if(!inicial){
+      dificultad = 1;
+      req.session.preguntas = [];
       req.session.inicial= 1;
-      req.session.listaPreguntas=[];
-      req.session.listaRespuestas=[];
-      req.session.listaPistas=[];
       req.session.dificultad=1;
     }
 
+    var preguntaClass = {pregunta:pregunta,dificultad:req.session.dificultad,respuestas:respuestas,pistas:pistas};
+
+
     if(req.body.boton==="SIGUIENTE"){
-      req.session.listaRespuestas.push(respuestas);
-      req.session.listaPistas.push(pistas);
-      req.session.listaPreguntas.push(pregunta);
+      req.session.preguntas.push(preguntaClass);
+      //console.log(req.session.preguntas);
       contadorPreguntas+=1;
       
     }
     if(req.body.boton==="GUARDAR"){
-      req.session.listaPreguntas.push({pregunta,res1,res2,res3,res4,pista1,pista2,dificultad});
-      req.session.dificultad += 1;
+      dificultad+=1;
+      req.session.preguntas.push(preguntaClass);
+      req.session.dificultad = dificultad;
       contadorPreguntas = 1;
       habilitado = null;
     }
 
     if(req.body.boton==="FINALIZAR"){
+    
+      req.session.preguntas.push(preguntaClass);
+      var data = {idProfesor: req.session.idProfesor, nombreJuego: req.session.nombreJuego,preguntas: req.session.preguntas};
+
+      console.log(data);
       (async () => {
         const rawResponse = await fetch(url, {
           method: 'POST',
@@ -98,7 +99,7 @@ router.post("/preguntas", (req, res)=>{
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(miprimeravez)
+          body: JSON.stringify(data)
         });
         const content = await rawResponse.json();
         
@@ -121,6 +122,8 @@ router.post("/borrarJuego",(req,res)=>{
   const url = "https://qqsm-api.herokuapp.com/juego/borrarJuego";
   var cuerpo = {id:id};
 
+
+  console.log(cuerpo);
   (async () => {
     const rawResponse = await fetch(url, {
       method: 'POST',
