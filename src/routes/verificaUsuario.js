@@ -32,9 +32,10 @@ router.post("/index",(req, res)=>{
                 method: 'GET'
               });
               const usuario = await rawResponse.json();
-              console.log(usuario);
+              console.log(usuario.data.id);
               //redirecciono a la pagina que quiero y envio los datos obtenidos
               console.log(usuario.data.juegos);
+              req.session.idProfesor = usuario.data.id;
               req.session.nombre = usuario.data.nombre;
               req.session.apellido = usuario.data.apellido;
               req.session.user = usuario.data.user;
@@ -56,6 +57,7 @@ router.post("/index",(req, res)=>{
     });
 
 router.get("/index",(req, res)=>{
+  
   res.render("panelPrincipal", {content: req.session.content, juegos:req.session.juegos});
 });
 

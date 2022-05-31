@@ -11,7 +11,7 @@ router.post("/nuevoJuego",(req,res)=>{
 router.post("/formulariopreguntas",(req,res)=>{
 
   var nombreJuego = req.body.nombreJuego;
-
+  
   req.session.nombreJuego = nombreJuego;
 
   console.log("redireccionando a nueva pregunta");
@@ -21,7 +21,8 @@ router.post("/formulariopreguntas",(req,res)=>{
 });
 
 
-router.post("/preguntas",(req, res)=>{
+router.post("/preguntas", (req, res)=>{
+    var nombreJuego = req.session.nombreJuego;
     var pregunta=req.body.pregunta;
     var res1=req.body.res1;
     var res2=req.body.res2;
@@ -30,10 +31,33 @@ router.post("/preguntas",(req, res)=>{
     var pista1=req.body.pista1;
     var pista2=req.body.pista2;
     var inicial = req.body.inicial;
+    
     var dificultad = req.body.dificultad;
     var habilitado = null;
     var finalizar = null;
-    var miprimeravez = {pregunta:pregunta,res1:res1,res2:res2,res3:res3,res4:res4,pista1:pista1,pista2:pista2,dificultad:dificultad}
+    var respuesta1 = {respuesta:res1,correcto:1};
+    var respuesta2 = {respuesta:res2,correcto:2};
+    var respuesta3 = {respuesta:res3,correcto:2};
+    var respuesta4 = {respuesta:res4,correcto:2};
+    //aca armo los objetos para armar el juego
+    var respuestas = [];
+    respuestas.push(respuesta1);
+    respuestas.push(respuesta2);
+    respuestas.push(respuesta3);
+    respuestas.push(respuesta4);
+
+    var pistas = {pista1,pista2};
+    var idProfesor = req.session.idProfesor;
+    
+    var preguntas = [{pregunta:pregunta,dificultad:dificultad,respuestas:respuestas,pistas:pistas}];
+    var juegoArmado = {idProfesor:idProfesor,nombreJuego:nombreJuego,preguntas:preguntas};
+
+    console.log(juegoArmado);
+    console.log(juegoArmado.preguntas[0].respuestas)
+    
+
+
+    var miprimeravez = {juegoArmado:juegoArmado}
     const url = "https://qqsm-api.herokuapp.com/juego/crearJuego";
 
 
@@ -47,12 +71,17 @@ router.post("/preguntas",(req, res)=>{
     if(!inicial){
       req.session.inicial= 1;
       req.session.listaPreguntas=[];
-      req.session.dificultad=0;
+      req.session.listaRespuestas=[];
+      req.session.listaPistas=[];
+      req.session.dificultad=1;
     }
 
-    if(req.body.boton=="SIGUIENTE"){
-      req.session.listaPreguntas.push({pregunta,res1,res2,res3,res4,pista1,pista2,dificultad});
+    if(req.body.boton==="SIGUIENTE"){
+      req.session.listaRespuestas.push(respuestas);
+      req.session.listaPistas.push(pistas);
+      req.session.listaPreguntas.push(pregunta);
       contadorPreguntas+=1;
+      
     }
     if(req.body.boton==="GUARDAR"){
       req.session.listaPreguntas.push({pregunta,res1,res2,res3,res4,pista1,pista2,dificultad});
@@ -72,7 +101,7 @@ router.post("/preguntas",(req, res)=>{
           body: JSON.stringify(miprimeravez)
         });
         const content = await rawResponse.json();
-        res.render("panelPrincipal")
+        
       })();
     }
 
