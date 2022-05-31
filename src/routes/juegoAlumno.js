@@ -3,6 +3,8 @@ const fetch = require("node-fetch");
 const router = express.Router();
 
 router.post("/juegoAlumno",(req,res)=>{
+  req.session.nropreg = req.session.indicepregunta+1;
+  if (req.session.nropreg<=10){
   //envio el nombre del participante de la vista participante.hbs
 
   
@@ -23,7 +25,7 @@ router.post("/juegoAlumno",(req,res)=>{
         req.session.respuesta = datosjuego.preguntas[req.session.indicepregunta -1].respuestas[i].respuesta;
     } 
   }
-    //guardo la dificultad de la pregunta
+    //guardo la dificultad de la+ pregunta
     req.session.nivel = datosjuego.preguntas[req.session.indicepregunta -1].dificultad;
     //guardo las pistas de la pregunta
     req.session.pistas = datosjuego.preguntas[req.session.indicepregunta -1].pistas;
@@ -38,8 +40,19 @@ router.post("/juegoAlumno",(req,res)=>{
       res2:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[1].respuesta,
       res3:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[2].respuesta,
       res4:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[3].respuesta,
+      nropreg:req.session.nropreg,
     });
+  }
+  else{
+    res.render("finJuego",
+  { idJuego:req.session.idJuego,
+    puntaje: req.session.puntaje, 
+    nombreParticipante:req.session.nombreParticipante, 
+
+  });
+  }
 });
+
 
 router.post("/respuesta",(req,res)=>{
   var respuesta = req.body.respuesta;
@@ -105,4 +118,7 @@ router.post("/solucion",(req,res)=>{
     });
 
 });
+
+
+
 module.exports = router;
