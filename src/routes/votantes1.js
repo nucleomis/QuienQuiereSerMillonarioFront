@@ -13,7 +13,8 @@ router.post("/magiaVotoEliminar",(req, res)=>{
     var valor3=req.session.respuesta[2];
     var valor4=req.session.respuesta[3];
     var magia = {id:idmagia,tipoVotacion:tipoVoto,valor1:valor1,valor2:valor2,valor3:valor3,valor4:valor4};
-(async () => {
+    console.log(magia);
+    (async () => {
   const rawResponse = await fetch(url, {
     method: 'POST',
     headers: {
