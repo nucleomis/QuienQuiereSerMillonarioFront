@@ -9,6 +9,8 @@ router.post("/index",(req, res)=>{
     var password = req.body.password;
     const url = "https://qqsm-api.herokuapp.com/usuario/verificarUsuario";
     const url2 = "https://qqsm-api.herokuapp.com/usuario/"
+    const urlLocal1 = "http://localhost:8080/usuario/verificarUsuario";
+    const urlLocal2 = "http://localhost:8080/usuario/";
     console.log('ingresando a fetch');
     (async () => {
         const rawResponse = await fetch(url, {
