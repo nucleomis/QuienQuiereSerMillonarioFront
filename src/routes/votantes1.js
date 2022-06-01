@@ -5,6 +5,7 @@ const router = express.Router();
 router.post("/votantes1",(req, res)=>{
   //res.render("index");//para renderizar y enviar el archivo con el nombre y la extencion previamente configurada como .hbs
   const url = "https://qqsm-api.herokuapp.com/juego/iniciojuego"
+  const urlLocal = "http://localhost:8080/juego/iniciojuego"
   console.log('ingresando a fetchito');
 
 (async () => {

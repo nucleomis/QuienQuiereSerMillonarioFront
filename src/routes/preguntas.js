@@ -53,7 +53,7 @@ router.post("/preguntas", (req, res)=>{
     
     
     const url = "https://qqsm-api.herokuapp.com/juego/crearJuego";
-
+    const urlLocal = "http://localhost:8080/juego/crearJuego";
 
     if(!req.body.numeroPregunta){
       var contadorPreguntas = 1;
@@ -90,7 +90,8 @@ router.post("/preguntas", (req, res)=>{
     
       req.session.preguntas.push(preguntaClass);
       var data = {idProfesor: req.session.idProfesor, nombreJuego: req.session.nombreJuego,preguntas: req.session.preguntas};
-
+      const url2 = "https://qqsm-api.herokuapp.com/usuario/";
+      const urlLocal2 = "http://localhost:8080/usuario/";
       console.log(data);
       (async () => {
         const rawResponse = await fetch(url, {
@@ -102,8 +103,25 @@ router.post("/preguntas", (req, res)=>{
           body: JSON.stringify(data)
         });
         const content = await rawResponse.json();
+        (async () => {
+          const rawResponse = await fetch(url2+req.session.idProfesor, {
+            method: 'GET'
+          });
+          const usuario = await rawResponse.json();
+          console.log(usuario.data.id);
+          //redirecciono a la pagina que quiero y envio los datos obtenidos
+          console.log(usuario.data.juegos);
+          req.session.idProfesor = usuario.data.id;
+          req.session.nombre = usuario.data.nombre;
+          req.session.apellido = usuario.data.apellido;
+          req.session.user = usuario.data.user;
+          req.session.content = usuario;
+          req.session.juegos = usuario.data.juegos;
+          res.render("panelPrincipal", {content: usuario, juegos: usuario.data.juegos, nombre:usuario.data.nombre,apellido:usuario.data.apellido,user:usuario.data.user});
+        })()
         
       })();
+      
     }
 
     if(req.session.dificultad==3){
@@ -120,6 +138,10 @@ router.post("/preguntas", (req, res)=>{
 router.post("/borrarJuego",(req,res)=>{
   var id = req.body.id;
   const url = "https://qqsm-api.herokuapp.com/juego/borrarJuego";
+  const url2 = "https://qqsm-api.herokuapp.com/usuario/";
+  const urlLocal = "http://localhost:8080/juego/borrarJuego";
+  const urlLocal2 = "http://localhost:8080/usuario/";
+
   var cuerpo = {id:id};
 
 
@@ -139,15 +161,25 @@ router.post("/borrarJuego",(req,res)=>{
 
     console.log("usuario: "+ req.session.user);
 
-
-    //redirecciono a la pagina que quiero y envio los datos obtenidos    
-    res.render("panelPrincipal", 
-    {
-      content: req.session.content, 
-      juegos: req.session.juegos, 
-      nombre:req.session.nombre,
-      apellido:req.session.apellido,
-      user:req.session.user});
+    (async () => {
+      const rawResponse = await fetch(url2+req.session.idProfesor, {
+        method: 'GET'
+      });
+      const usuario = await rawResponse.json();
+      console.log(usuario.data.id);
+      //redirecciono a la pagina que quiero y envio los datos obtenidos
+      console.log(usuario.data.juegos);
+      req.session.idProfesor = usuario.data.id;
+      req.session.nombre = usuario.data.nombre;
+      req.session.apellido = usuario.data.apellido;
+      req.session.user = usuario.data.user;
+      req.session.content = usuario;
+      req.session.juegos = usuario.data.juegos;
+      res.render("panelPrincipal", {content: usuario, juegos: usuario.data.juegos, nombre:usuario.data.nombre,apellido:usuario.data.apellido,user:usuario.data.user});
+    })()
+   
 })();
+
+
 });
 module.exports=router;

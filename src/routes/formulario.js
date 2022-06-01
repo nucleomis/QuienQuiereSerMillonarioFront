@@ -11,6 +11,7 @@ router.post("/registrar",(req, res)=>{
     var cuerpo = {nombre:nombre, apellido:apellido, direccion:direccion,user: user, email:email, password: password}
     console.log(nombre);
     const url = "https://qqsm-api.herokuapp.com/usuario/registrar";
+    const urlLocal = "http://localhost:8080/usuario/registrar";
     console.log('ingresando a fetch');
     console.log(apellido);
     (async () => {

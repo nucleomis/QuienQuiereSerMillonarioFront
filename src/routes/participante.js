@@ -8,6 +8,7 @@ router.post("/jugando",(req,res)=>{
   var cuerpo = {id:id}
   
   const url = "https://qqsm-api.herokuapp.com/juego/iniciojuego";
+  const urlLocal = "http://localhost:8080/juego/iniciojuego";
   (async () => {
     const rawResponse = await fetch(url, {
     
@@ -22,7 +23,8 @@ router.post("/jugando",(req,res)=>{
   const content = await rawResponse.json();
   
   req.session.juegoiniciado = content;
-    req.session.indicepregunta = 0;
+  console.log("juego encontrado: "+req.session.juegoiniciado.data);
+  req.session.indicepregunta = 0;
   res.render("participante")
   
   })();
