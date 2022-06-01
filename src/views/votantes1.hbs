@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark d-flex" style="background-color:lightslategrey;">
+<nav class="navbar navbar-expand-lg navbar-dark d-flex" style="background-color:rgb(11, 105, 199);">
   <div class="container">
     <div class="container-fluid d-flex">
       <a class="navbar-brand" href="/"></a>
@@ -18,16 +18,16 @@
     </div>
   </div>
 </nav>      
-        <form class="formato" action="/preguntas" method="POST" id="formvotante">
+        <form class="container-fluid d-flex" action="/mostrarValor" method="POST" id="formvotante">
                 <div class="form-group mt-2">
                 <input type="submit" name="btn1" value="PISTAS" class="btn btn-primary mb-2">
-                <input type="submit" name="btn2" value={{valor2}} class="btn btn-primary mb-2">
-                <input type="submit" name="btn3" value={{valor3}} class="btn btn-primary mb-2">
+                <input type="submit" name="btn2" value="VOTO POPULAR" class="btn btn-primary mb-2">
+                <input type="submit" name="btn3" value="ELIMINAR OPCIONES" class="btn btn-primary mb-2">
                 </div>
                 </form>
         
         
-        <form class="formato" action="/preguntas" method="POST" id="formvotante">
+        <form class="container-fluid d-flex" action="/votar" method="POST" id="formvotante">
                 <div class="form-group mt-2">
                     <input type="submit" name="btn1" value={{valor1}} class="btn btn-primary mb-2">
                 </div>
