@@ -3,15 +3,15 @@ const fetch = require("node-fetch");
 const router = express.Router();
 
 //aca va el envio para eliminar dos opciones
-router.post("/magiaVotoPopular",(req, res)=>{
+router.post("/magiaVotoEliminar",(req, res)=>{
   const url = "https://qqsm-api.herokuapp.com/votar/votar";
-  console.log('Introduciendo la Magia al Sistema');
+  console.log('Eligio eliminar 2 preguntas');
     var idmagia = 1;
     var tipoVoto = 3;
-    var valor1=req.session.res1;
-    var valor2=req.session.res2;
-    var valor3=req.session.res3;
-    var valor4=req.session.res4;
+    var valor1=req.session.respuesta[0];
+    var valor2=req.session.respuesta[1];
+    var valor3=req.session.respuesta[2];
+    var valor4=req.session.respuesta[3];
     var magia = {id:idmagia,tipoVotacion:tipoVoto,valor1:valor1,valor2:valor2,valor3:valor3,valor4:valor4};
 (async () => {
   const rawResponse = await fetch(url, {
@@ -34,14 +34,16 @@ const question = await rawResponse.json();
 //aca va el envio para seleccionar la respuesta correcta
 router.post("/magiaVotoPopular",(req, res)=>{
   const url = "https://qqsm-api.herokuapp.com/votar/votar";
-  console.log('Introduciendo la Magia al Sistema');
+  console.log('Eligio Voto Popular');
     var idmagia = 1;
     var tipoVoto = 2;
-    var valor1=req.session.res1;
-    var valor2=req.session.res2;
-    var valor3=req.session.res3;
-    var valor4=req.session.res4;
+    var valor1=req.session.respuesta[0];
+    var valor2=req.session.respuesta[1];
+    var valor3=req.session.respuesta[2];
+    var valor4=req.session.respuesta[3];
+
     var magia = {id:idmagia,tipoVotacion:tipoVoto,valor1:valor1,valor2:valor2,valor3:valor3,valor4:valor4};
+    console.log(magia);
 (async () => {
   const rawResponse = await fetch(url, {
     method: 'POST',
@@ -53,7 +55,7 @@ router.post("/magiaVotoPopular",(req, res)=>{
   });
  
   console.log(magia);
-const question = await rawResponse.json();
+  const content = await rawResponse.json();
 
 
 });
@@ -63,11 +65,11 @@ const question = await rawResponse.json();
 //aca va el envio para elegir y mostrar la pista
 router.post("/magiaPista",(req, res)=>{
   const url = "https://qqsm-api.herokuapp.com/votar/votar";
-  console.log('Introduciendo la Magia al Sistema');
+  console.log('eligio Pistas');
     var idmagia = 1;
     var tipoVoto = 1;
-    var valor1=req.session.pista1;
-    var valor2=req.session.pista2;
+    var valor1=req.session.pista[0];
+    var valor2=req.session.pista[1];
 
     var magia = {id:idmagia,tipoVotacion:tipoVoto,valor1:valor1,valor2:valor2};
 (async () => {
@@ -97,10 +99,10 @@ router.post("/lamagia",(req, res)=>{
     method: 'GET'
   });
     const tablita = await rawResponse.json();
-    req.session.valor1=tablita.data.valor1;
-    req.session.valor2=tablita.data.valor2;
-    req.session.valor3=tablita.data.valor3;
-    req.session.valor4=tablita.data.valor4;
+    req.session.valor1=tablita.valor1;
+    req.session.valor2=tablita.valor2;
+    req.session.valor3=tablita.valor3;
+    req.session.valor4=tablita.valor4;
     console.log(req.session.valor1,req.session.valor2,req.session.valor3,req.session.valor4) 
 
   });
