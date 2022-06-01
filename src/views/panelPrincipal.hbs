@@ -76,7 +76,7 @@
                             <p>{{fechaCreacion}}</p>
                             <div class="d-grid gap-1 mt-3">
                                 <form action="/borrarJuego" method="POST"><!--pruebo pasar el metodo delete para borrar-->
-                                    <input type="text" name="id" value="{{id}}"><!--input oculto para donde envia la peticion delete-->
+                                    <input type="hidden" name="id" value="{{id}}"><!--input oculto para donde envia la peticion delete-->
                                     <button  class="btn btn-danger btn-block btn-sm" type="submit">Borrar</button>
                                 </form>
                                 <form action="/jugando" method="POST"><!--ejecuto el juego en la vista juegoAlumno-->

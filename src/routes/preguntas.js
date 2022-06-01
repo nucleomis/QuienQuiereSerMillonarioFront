@@ -137,9 +137,17 @@ router.post("/borrarJuego",(req,res)=>{
 
     req.session.juegos = content.data;
 
-    console.log("usuario: "+ content.data);
+    console.log("usuario: "+ req.session.user);
 
-    res.redirect("/index");
+
+    //redirecciono a la pagina que quiero y envio los datos obtenidos    
+    res.render("panelPrincipal", 
+    {
+      content: req.session.content, 
+      juegos: req.session.juegos, 
+      nombre:req.session.nombre,
+      apellido:req.session.apellido,
+      user:req.session.user});
 })();
 });
 module.exports=router;
