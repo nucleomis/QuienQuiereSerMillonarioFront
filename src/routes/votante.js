@@ -8,10 +8,10 @@ router.post("/votante",(req,res)=>{
   res.render("votantes1");
 });
 
-router.post("/pantallavotante",(req,res)=>{
+router.post("/nuevoVotante",(req,res)=>{
+  var id = req.body.id;
+  req.session.idJuego = id;
   console.log("redireccionando a Pantalla de Votante ");
   res.render("votante");
 });
-
-
 module.exports = router;

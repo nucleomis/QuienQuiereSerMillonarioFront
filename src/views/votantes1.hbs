@@ -18,26 +18,27 @@
     </div>
   </div>
 </nav>      
-        <form class="container-fluid d-flex" action="/mostrarValor" method="POST" id="formvotante">
+        <form class="container-fluid d-flex" action="/lamagia" method="POST" id="formvotante">
                 <div class="form-group mt-2">
-                <input type="submit" name="btn1" value="PISTAS" class="btn btn-primary mb-2">
-                <input type="submit" name="btn2" value="VOTO POPULAR" class="btn btn-primary mb-2">
-                <input type="submit" name="btn3" value="ELIMINAR OPCIONES" class="btn btn-primary mb-2">
+                <input type="submit" name="btn1" value="PARTICIPAR" class="btn btn-primary mb-2">
                 </div>
                 </form>
         
         
-        <form class="container-fluid d-flex" action="/votar" method="POST" id="formvotante">
+        <form class="container-fluid d-flex" action="/altatabla" method="POST" id="formvotante">
+                
                 <div class="form-group mt-2">
                     <input type="submit" name="btn1" value={{valor1}} class="btn btn-primary mb-2">
                 </div>
                 <div class="form-group mt-2">
                     <input type="submit" name="btn2" value={{valor2}} class="btn btn-primary mb-2">
                 </div>
+                
                 <div class="form-group mt-2">
                     <input type="submit" name="btn3" value={{valor3}} class="btn btn-primary mb-2">
                 </div>
                 <div class="form-group mt-2">
                     <input type="submit" name="btn4" value={{valor4}} class="btn btn-primary mb-2">
                 </div>
+                
         </form> 
