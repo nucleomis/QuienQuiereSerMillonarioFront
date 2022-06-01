@@ -2,8 +2,6 @@ const express = require("express");
 const fetch = require("node-fetch");
 const router = express.Router();
 
-<<<<<<< HEAD
-=======
 router.post("/votantes1",(req, res)=>{
   //res.render("index");//para renderizar y enviar el archivo con el nombre y la extencion previamente configurada como .hbs
   const url = "https://qqsm-api.herokuapp.com/juego/iniciojuego"
@@ -33,6 +31,5 @@ req.session.pista2 = usuario.data.pista2;
 
 });
 })
->>>>>>> 34a83aeb7abe6955e6f4ab31b6c12947ea31d5e0
 
 module.exports = router;
