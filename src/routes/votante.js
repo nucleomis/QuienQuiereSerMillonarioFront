@@ -5,7 +5,8 @@ router.post("/votante",(req,res)=>{
   var id = req.body.id;
   req.session.idJuego = id;
   console.log("redireccionando a Pantalla de Votante ");
-  res.render("votantes1");
+  res.render("votantes1",{btnrespuesta:null, btnpista:null })
+  
 });
 
 router.post("/nuevoVotante",(req,res)=>{

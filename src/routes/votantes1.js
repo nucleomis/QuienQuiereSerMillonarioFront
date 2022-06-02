@@ -6,10 +6,6 @@ const router = express.Router();
 router.post("/magiaVotoEliminar",(req, res)=>{
   const url = "https://qqsm-api.herokuapp.com/votar/votar";
 
-    //habilito botones
-    pista = null;
-    respuesta = true;
-
   console.log('Eligio eliminar 2 preguntas');
   var idmagia = 1;
   var tipoVoto = 3;
@@ -22,8 +18,8 @@ router.post("/magiaVotoEliminar",(req, res)=>{
   var punto2=2;
   var punto3=3;
   var punto4=4;
-  var magia = {id:idmagia,tipoVotacion:tipoVoto,valor1:valor1,valor2:valor2,valor3:valor3,valor4:valor4,punto1:punto1,punto2:punto2,punto3:punto3,punto4:punto4, pista:pista, respuesta:respuesta};
- 
+  var magia = {id:idmagia,tipoVotacion:tipoVoto,valor1:valor1,valor2:valor2,valor3:valor3,valor4:valor4,punto1:punto1,punto2:punto2,punto3:punto3,punto4:punto4};
+  
     (async () => {
   const rawResponse = await fetch(url, {
     method: 'POST',
@@ -47,9 +43,7 @@ router.post("/magiaVotoPopular",(req, res)=>{
   const url = "https://qqsm-api.herokuapp.com/votar/votar";
 
   //habilito botones
-  pista = null;
-  respuesta = true;
-
+  
   console.log('Eligio Voto Popular');
     var idmagia = 1;
     var tipoVoto = 2;
@@ -62,7 +56,7 @@ router.post("/magiaVotoPopular",(req, res)=>{
     var punto2=2;
     var punto3=3;
     var punto4=4;
-    var magia = {id:idmagia,tipoVotacion:tipoVoto,valor1:valor1,valor2:valor2,valor3:valor3,valor4:valor4,punto1:punto1,punto2:punto2,punto3:punto3,punto4:punto4, pista:pista, respuesta:respuesta};
+    var magia = {id:idmagia,tipoVotacion:tipoVoto,valor1:valor1,valor2:valor2,valor3:valor3,valor4:valor4,punto1:punto1,punto2:punto2,punto3:punto3,punto4:punto4};
     
   (async () => {
     const rawResponse = await fetch(url, {
@@ -87,10 +81,6 @@ router.post("/magiaPista",(req, res)=>{
   const url = "https://qqsm-api.herokuapp.com/votar/votar";
   console.log('eligio Pistas');
   
-  //habilito botones
-  mostrar = true;
-  
-
   var idmagia = 1;
   var tipoVoto = 1;
   var indice = req.session.indicepregunta;
@@ -102,7 +92,7 @@ router.post("/magiaPista",(req, res)=>{
   var punto2=2;
   var punto3=3;
   var punto4=4;
-  var magia = {id:idmagia,tipoVotacion:tipoVoto,valor1:valor1,valor2:valor2,valor3:valor3,valor4:valor4,punto1:punto1,punto2:punto2,punto3:punto3,punto4:punto4, mostrar:mostrar};
+  var magia = {id:idmagia,tipoVotacion:tipoVoto,valor1:valor1,valor2:valor2,valor3:valor3,valor4:valor4,punto1:punto1,punto2:punto2,punto3:punto3,punto4:punto4};
 
 (async () => {
   const rawResponse = await fetch(url, {
@@ -136,8 +126,32 @@ router.post("/lamagia",(req, res)=>{
     req.session.valor2=content.data.valor2;
     req.session.valor3=content.data.valor3;
     req.session.valor4=content.data.valor4;
-    console.log(req.session.valor1,req.session.valor2,req.session.valor3, req.session.valor4) 
-    res.render("votantes1",{valor1:req.session.valor1,valor2:req.session.valor2,valor3:req.session.valor3,valor4:req.session.valor4})
+    //activo o desactivo botones
+    req.session.btnpista=content.data.tipoVoto;
+    req.session.btnrespuesta=content.data.tipoVoto;
+    console.log(content.data.tipoVotacion);
+    
+    if (content.data.tipoVotacion == 3 ){
+      btnrespuesta=true;
+      btnpista=false;
+      console.log("3")
+    }
+    
+    
+    if (content.data.tipoVotacion == 2 ){
+      btnrespuesta=true;
+      btnpista=false;
+      console.log("2")
+    }
+
+
+    if (content.data.tipoVotacion == 1){
+      btnrespuesta=false;
+      btnpista=true;
+    }
+    
+    
+    res.render("votantes1",{valor1:req.session.valor1,valor2:req.session.valor2,valor3:req.session.valor3,valor4:req.session.valor4, btnrespuesta:btnrespuesta, btnpista:btnpista })
 
   })()
    //cargo los valores a los botones
