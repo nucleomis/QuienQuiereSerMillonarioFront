@@ -28,8 +28,8 @@ router.post("/magiaVotoEliminar",(req, res)=>{
 const question = await rawResponse.json();
 
 
+})()
 });
-})
 
 
 //aca va el envio para seleccionar la respuesta correcta
@@ -59,8 +59,8 @@ router.post("/magiaVotoPopular",(req, res)=>{
   const content = await rawResponse.json();
 
 
+})()
 });
-})
 
 
 //aca va el envio para elegir y mostrar la pista
@@ -87,16 +87,17 @@ router.post("/magiaPista",(req, res)=>{
 const question = await rawResponse.json();
 
 
+})()
 });
-})
 
 //aca va el envio para elegir y mostrar la pista
 router.post("/lamagia",(req, res)=>{
   const url = "https://qqsm-api.herokuapp.com/votar/quevotar";
+  
   console.log('Leyendo la tablita magica del Sistema');
     
-(async () => {
-  const rawResponse = await fetch(url, {
+  (async () => {
+    const rawResponse = await fetch(url, {
     method: 'GET'
   });
     const tablita = await rawResponse.json();
@@ -104,10 +105,10 @@ router.post("/lamagia",(req, res)=>{
     req.session.valor2=tablita.valor2;
     req.session.valor3=tablita.valor3;
     req.session.valor4=tablita.valor4;
-    console.log(req.session.valor1,req.session.valor2,req.session.valor3,req.session.valor4) 
+    console.log(req.session.valor1,req.session.valor2,req.session.valor3, req.session.valor4) 
 
-  });
-   
+  })()
+   //cargo los valores a los botones
   res.render("votantes1",{valor1:req.session.valor1,valor2:req.session.valor2,valor3:req.session.valor3,valor4:req.session.valor4})
 });
 
