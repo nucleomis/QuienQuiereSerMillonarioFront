@@ -60,7 +60,7 @@ router.post("/index",(req, res)=>{
 
 router.get("/index",(req, res)=>{
   
-  res.render("panelPrincipal", {content: req.session.content, juegos:req.session.juegos});
+  res.render("panelPrincipal", {content:req.session.content, juegos:req.session.juegos, user: req.session.user});
 });
 
 module.exports = router;
