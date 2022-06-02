@@ -13,7 +13,7 @@ router.post("/magiaVotoEliminar",(req, res)=>{
     var valor3=req.session.respuesta[2];
     var valor4=req.session.respuesta[3];
     var magia = {id:idmagia,tipoVotacion:tipoVoto,valor1:valor1,valor2:valor2,valor3:valor3,valor4:valor4};
-    console.log(magia);
+    
     (async () => {
   const rawResponse = await fetch(url, {
     method: 'POST',
@@ -25,7 +25,7 @@ router.post("/magiaVotoEliminar",(req, res)=>{
   });
  
   console.log(magia);
-const question = await rawResponse.json();
+ const question = await rawResponse.json();
 
 
 })()
@@ -38,15 +38,18 @@ router.post("/magiaVotoPopular",(req, res)=>{
   console.log('Eligio Voto Popular');
     var idmagia = 1;
     var tipoVoto = 2;
-    var valor1=req.session.respuesta[0];
-    var valor2=req.session.respuesta[1];
-    var valor3=req.session.respuesta[2];
-    var valor4=req.session.respuesta[3];
-
-    var magia = {id:idmagia,tipoVotacion:tipoVoto,valor1:valor1,valor2:valor2,valor3:valor3,valor4:valor4};
-    console.log(magia);
-(async () => {
-  const rawResponse = await fetch(url, {
+    var valor1=req.session.respuesta;
+    var valor2=req.session.respuesta;
+    var valor3=req.session.respuesta;
+    var valor4=req.session.respuesta;
+    var punto1=1;
+    var punto2=2;
+    var punto3=3;
+    var punto4=4;
+    var magia = {id:idmagia,tipoVotacion:tipoVoto,valor1:valor1,valor2:valor2,valor3:valor3,valor4:valor4,punto1:punto1,punto2:punto2,punto3:punto3,punto4:punto4};
+    
+  (async () => {
+    const rawResponse = await fetch(url, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -54,9 +57,9 @@ router.post("/magiaVotoPopular",(req, res)=>{
     },
     body: JSON.stringify(magia)
   });
- 
-  console.log(magia);
   const content = await rawResponse.json();
+  console.log(magia);
+  
 
 
 })()
