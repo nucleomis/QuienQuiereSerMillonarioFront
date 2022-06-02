@@ -4,6 +4,8 @@ const router = express.Router();
 
 router.post("/juegoAlumno",(req,res)=>{
   req.session.nropreg = req.session.indicepregunta+1;
+ 
+
   if (req.session.nropreg<=10){
   //envio el nombre del participante de la vista participante.hbs
 
