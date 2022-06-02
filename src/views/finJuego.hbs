@@ -1,17 +1,16 @@
-<h3 class="formato">FIN DEL JUEGO</h3>
+
 <br></br>
-<form>
-   <div class="form-group b">
+<div class="container text-center">
+   <div class="form-group b" style="background-color:aqua; border-radius: 10px; opacity: 0.7;">
       <div class="d-grid gap-3 mt-6 ">    
-        <input type="text" name="juego" class="form-control" placeholder="FIN DEL JUEGO"><span class="border-3"></span>
-        <input type="text" name="juego" class="form-control" placeholder="Felicitaciones: {{nombreParticipante}}"><span class="border-3"></span>
-        <input type="text" name="juego" class="form-control" placeholder="Su Puntaje es: {{puntaje}}"><span class="border-3"></span>
-        
+        <div> <h1>FIN DEL JUEGO</h1></div>
+        <div> <h1>Felicitaciones: {{nombreParticipante}}</h1></div>
+        <div> <h1>Su Puntaje es: {{puntaje}}</h1></div>
       </div>               
     </div>
-</form>
+</div>
 
-<div>
+<div class="container text-center mt-2">
   <form action="/index" method="get">
     <input type="submit" value="Volver al panel principal" class="btn btn-primary">
   </form>
