@@ -231,35 +231,62 @@ router.post("/votoOpcion2",(req, res)=>{
   const url = "https://qqsm-api.herokuapp.com/votar/votar";
   console.log('mando el voto elegido');
   
-   
+  const url2 = "https://qqsm-api.herokuapp.com/votar/quevotar";
+  
+  console.log('Leyendo la tablita magica del Sistema');
+    
+  (async () => {
+    const rawResponse = await fetch(url2,{
+      method: 'GET'
+    });
+    const content = await rawResponse.json();
+    req.session.content=content;
+    console.log("contenido del id: "+content.data.id);
 
-  var idmagia = 1;
-  var tipoVoto = 1;
-  var valor1="";
-  var valor2=req.session.valor2;
-  var valor3="";
-  var valor4="";
-  var punto1=0;
-  var punto2=1;
-  var punto3=0;
-  var punto4=0;
-  var magia = {id:idmagia,tipoVotacion:tipoVoto,valor1:valor1,valor2:valor2,valor3:valor3,valor4:valor4,punto1:punto1,punto2:punto2,punto3:punto3,punto4:punto4};
+    //activo o desactivo botones
+    req.session.btnpista=content.data.tipoVotacion;
+    req.session.btnrespuesta=content.data.tipoVotacion;
+    
+    req.session.id = content.data.id;
+    req.session.tipoVotacion = content.data.tipoVotacion;
+    req.session.valor1 = content.data.valor1;
+    req.session.valor2 = content.data.valor2;
+    req.session.valor3 = content.data.valor3;
+    req.session.valor4 = content.data.valor4;
+    req.session.puntoa = content.data.punto1;
+    req.session.puntob = parseInt(content.data.punto2)+1;
+    req.session.puntoc = content.data.punto3;
+    req.session.puntod = content.data.punto4;
+    req.session.content = content.data;
 
-(async () => {
-  const rawResponse = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(magia)
-  });
-  res.render("votantes1");
-  console.log(magia);
-const question = await rawResponse.json();
+    console.log("muestro el id: "+req.session.id);
+      var magia = {id:1,
+      tipoVotacion:req.session.tipoVotacion,
+      valor1:req.session.valor1,
+      valor2:req.session.valor2,
+      valor3:req.session.valor3,
+      valor4:req.session.valor4,
+      punto1:req.session.puntoa ,
+      punto2:req.session.puntob,
+      punto3:req.session.puntoc,
+      punto4:req.session.puntod};
+      
+      console.log(magia);
 
+    (async () => {
+      const rawResponse = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(magia)
+      });
+      res.render("votantes1");
+    const question = await rawResponse.json();
+    })()
 
-})()
+  })()
 });
 
 //envio mi voto Opcion 3
@@ -267,33 +294,62 @@ router.post("/votoOpcion3",(req, res)=>{
   const url = "https://qqsm-api.herokuapp.com/votar/votar";
   console.log('mando el voto elegido');
   
-  var idmagia = 1;
-  var tipoVoto = 1;
-  var valor1="";
-  var valor2="";
-  var valor3=req.session.valor3;
-  var valor4="";
-  var punto1=0;
-  var punto2=0;
-  var punto3=1;
-  var punto4=0;
-  var magia = {id:idmagia,tipoVotacion:tipoVoto,valor1:valor1,valor2:valor2,valor3:valor3,valor4:valor4,punto1:punto1,punto2:punto2,punto3:punto3,punto4:punto4};
+  const url2 = "https://qqsm-api.herokuapp.com/votar/quevotar";
+  
+  console.log('Leyendo la tablita magica del Sistema');
+    
+  (async () => {
+    const rawResponse = await fetch(url2,{
+      method: 'GET'
+    });
+    const content = await rawResponse.json();
+    req.session.content=content;
+    console.log("contenido del id: "+content.data.id);
 
-(async () => {
-  const rawResponse = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(magia)
-  });
-  res.render("votantes1");
-  console.log(magia);
-const question = await rawResponse.json();
+    //activo o desactivo botones
+    req.session.btnpista=content.data.tipoVotacion;
+    req.session.btnrespuesta=content.data.tipoVotacion;
+    
+    req.session.id = content.data.id;
+    req.session.tipoVotacion = content.data.tipoVotacion;
+    req.session.valor1 = content.data.valor1;
+    req.session.valor2 = content.data.valor2;
+    req.session.valor3 = content.data.valor3;
+    req.session.valor4 = content.data.valor4;
+    req.session.puntoa = content.data.punto1;
+    req.session.puntob = content.data.punto2;
+    req.session.puntoc = parseInt(content.data.punto3)+1;
+    req.session.puntod = content.data.punto4;
+    req.session.content = content.data;
 
+    console.log("muestro el id: "+req.session.id);
+      var magia = {id:1,
+      tipoVotacion:req.session.tipoVotacion,
+      valor1:req.session.valor1,
+      valor2:req.session.valor2,
+      valor3:req.session.valor3,
+      valor4:req.session.valor4,
+      punto1:req.session.puntoa ,
+      punto2:req.session.puntob,
+      punto3:req.session.puntoc,
+      punto4:req.session.puntod};
+      
+      console.log(magia);
 
-})()
+    (async () => {
+      const rawResponse = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(magia)
+      });
+      res.render("votantes1");
+    const question = await rawResponse.json();
+    })()
+
+  })()
 });
 
 //envio mi voto Opcion 4
@@ -301,33 +357,62 @@ router.post("/votoOpcion4",(req, res)=>{
   const url = "https://qqsm-api.herokuapp.com/votar/votar";
   console.log('mando el voto elegido');
   
-  var idmagia = 1;
-  var tipoVoto = 1;
-  var valor1="";
-  var valor2="";
-  var valor3="";
-  var valor4=req.session.valor4;
-  var punto1=0;
-  var punto2=0;
-  var punto3=0;
-  var punto4=1;
-  var magia = {id:idmagia,tipoVotacion:tipoVoto,valor1:valor1,valor2:valor2,valor3:valor3,valor4:valor4,punto1:punto1,punto2:punto2,punto3:punto3,punto4:punto4};
+  const url2 = "https://qqsm-api.herokuapp.com/votar/quevotar";
+  
+  console.log('Leyendo la tablita magica del Sistema');
+    
+  (async () => {
+    const rawResponse = await fetch(url2,{
+      method: 'GET'
+    });
+    const content = await rawResponse.json();
+    req.session.content=content;
+    console.log("contenido del id: "+content.data.id);
 
-(async () => {
-  const rawResponse = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(magia)
-  });
-  res.render("votantes1");
-  console.log(magia);
-const question = await rawResponse.json();
+    //activo o desactivo botones
+    req.session.btnpista=content.data.tipoVotacion;
+    req.session.btnrespuesta=content.data.tipoVotacion;
+    
+    req.session.id = content.data.id;
+    req.session.tipoVotacion = content.data.tipoVotacion;
+    req.session.valor1 = content.data.valor1;
+    req.session.valor2 = content.data.valor2;
+    req.session.valor3 = content.data.valor3;
+    req.session.valor4 = content.data.valor4;
+    req.session.puntoa = content.data.punto1;
+    req.session.puntob = content.data.punto2;
+    req.session.puntoc = content.data.punto3;
+    req.session.puntod = parseInt(content.data.punto4)+1;
+    req.session.content = content.data;
 
+    console.log("muestro el id: "+req.session.id);
+      var magia = {id:1,
+      tipoVotacion:req.session.tipoVotacion,
+      valor1:req.session.valor1,
+      valor2:req.session.valor2,
+      valor3:req.session.valor3,
+      valor4:req.session.valor4,
+      punto1:req.session.puntoa ,
+      punto2:req.session.puntob,
+      punto3:req.session.puntoc,
+      punto4:req.session.puntod};
+      
+      console.log(magia);
 
-})()
+    (async () => {
+      const rawResponse = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(magia)
+      });
+      res.render("votantes1");
+    const question = await rawResponse.json();
+    })()
+
+  })()
 });
 
 
