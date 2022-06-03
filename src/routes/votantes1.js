@@ -129,7 +129,7 @@ router.post("/lamagia",(req, res)=>{
     //activo o desactivo botones
     req.session.btnpista=content.data.tipoVoto;
     req.session.btnrespuesta=content.data.tipoVoto;
-    console.log(content.data.tipoVotacion);
+    console.log("tipo votacion "+content.data.tipoVotacion);
     
     if (content.data.tipoVotacion == 3 ){
       btnrespuesta=true;
@@ -168,46 +168,62 @@ router.post("/votoOpcion1",(req, res)=>{
   console.log('Leyendo la tablita magica del Sistema');
     
   (async () => {
-    const rawResponse = await fetch(url2, {
-    method: 'GET'
-  });
+    const rawResponse = await fetch(url2,{
+      method: 'GET'
+    });
     const content = await rawResponse.json();
     req.session.content=content;
+    console.log("contenido del id: "+content.data.id);
+
     //activo o desactivo botones
-    req.session.btnpista=content.data.tipoVoto;
-    req.session.btnrespuesta=content.data.tipoVoto;
+    req.session.btnpista=content.data.tipoVotacion;
+    req.session.btnrespuesta=content.data.tipoVotacion;
     
+    req.session.id = content.data.id;
+    req.session.tipoVotacion = content.data.tipoVotacion;
+    req.session.valor1 = content.data.valor1;
+    req.session.valor2 = content.data.valor2;
+    req.session.valor3 = content.data.valor3;
+    req.session.valor4 = content.data.valor4;
+    req.session.puntoa = parseInt(content.data.punto1)+1;
+    req.session.puntob = content.data.punto2;
+    req.session.puntoc = content.data.punto3;
+    req.session.puntod = content.data.punto4;
+    req.session.content = content.data;
     
+    console.log("valor original: "+content.data.punto1);
+    console.log("tipo votacion "+req.session.tipoVotacion);
+
+    console.log("muestro el id: "+req.session.id);
+      var magia = {id:1,
+      tipoVotacion:req.session.tipoVotacion,
+      valor1:req.session.valor1,
+      valor2:req.session.valor2,
+      valor3:req.session.valor3,
+      valor4:req.session.valor4,
+      punto1:req.session.puntoa ,
+      punto2:req.session.puntob,
+      punto3:req.session.puntoc,
+      punto4:req.session.puntod};
+      
+      console.log(magia);
+
+    (async () => {
+      const rawResponse = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(magia)
+      });
+      res.render("votantes1");
+    const question = await rawResponse.json();
+    })()
+
   })()
 
-      var idmagia = 1;
-      var tipoVoto = req.session.content.data.tipoVotacion;
-      var magia = {id:idmagia,
-      tipoVotacion:tipoVoto,
-      valor1:req.session.content.data.valor1,
-      valor2:req.session.content.data.valor2,
-      valor3:req.session.content.data.valor3,
-      valor4:req.session.content.data.valor4,
-      punto1:parseInt(req.session.content.data.punto1)+ 1,
-      punto2:parseInt(req.session.content.data.punto2),
-      punto3:parseInt(req.session.content.data.punto3),
-      punto4:parseInt(req.session.content.data.punto4)};
-
-(async () => {
-  const rawResponse = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(magia)
-  });
-  res.render("votantes1");
-  console.log(magia);
-const question = await rawResponse.json();
-
-
-})()
+      
 });
 
 //envio mi voto Opcion 2
