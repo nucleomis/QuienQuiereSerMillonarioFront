@@ -101,21 +101,57 @@
         </div>
     </div>
 </div>
-<footer>
-<div class= "container container-flex">
-  <form  action="/solucion" method="POST">
-    <div class="boton">
-      <input type="submit" value="Mostrar Solucion" class="btn btn-primary mb-2">
+
+<div role="alert" id="mitoast" aria-live="assertive" aria-atomic="true" class="toast">
+     <div class="toast-header">
+        <strong class="mr-auto">Resultado: </strong>
+           <div class="toast-body">
+           La Votacion es: {{valor1}}
+            </div>
+          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Cerrar" onclick="cerrarToast()">
+            
+            <span aria-hidden="true">×</span>
+        </button>
+ 
     </div>
+ 
+</div>
+
+
+
+
+<script>
+function mostrarToast() {
+  var toast = document.getElementById("mitoast");
+  toast.className = "mostrar";
+  setTimeout(function(){ toast.className = toast.className.replace("mostrar", ""); }, 5000);
+}
+function cerrarToast() {
+    var toast = document.getElementById("mitoast");
+    toast.className = "cerrar";
+    toast.className = toast.className.replace("cerrar", "");
+}
+</script>
+
+ 
+
+<footer>
+<div class="opciones">
+  <form  action="/solucion" method="POST">
+      <input type="submit" value="Mostrar Solucion" class="btn btn-warning">
   </form>
+ 
+  <button type="button" class="btn btn-success" onclick="mostrarToast()">Mostrar Votación</button>
+
   <form  action="/juegoAlumno" method="POST">
-      <div class="boton">
-        <input type="submit" value="Siguiente Pregunta" class="btn btn-primary mb-2">
-      </div>
-  </form>
+      
+        <input type="submit" value="Siguiente Pregunta" class="btn btn-primary">
+      </form>
+ </div>
+  
 
   
-    <div class="boton">
+    <div class="opciones">
         <form action="/magiaPista" method="POST">
         <input type="submit" value="Pistas" class="btn btn-primary mb-2">
         </form>
@@ -126,8 +162,8 @@
         <input type="submit" value="Eliminar Opciones" class="btn btn-primary mb-2">
         </form>
     </div>
-  </form>
-</div>
+  
+
 </footer>
 <br>
 <br>
