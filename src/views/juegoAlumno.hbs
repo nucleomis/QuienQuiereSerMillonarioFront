@@ -39,12 +39,12 @@
 </nav>
 <br></br>
 
-{{#if dato}}
+<!--{{#if dato}}
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        {{dato}}<!--agrego el texto con el string que setee en el controlador-->
+        {{dato}}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-{{/if}}
+{{/if}}!-->
 
 <br></br>
 <div class="container text-start">
@@ -67,14 +67,14 @@
             <div class="opciones__item">
               <form action="/respuesta" method="post">
                 <input type="hidden" name="respuesta" value={{res1}}>
-                <button name="boton" id="a" class="button fondoA"><span class="amarillo" value={{res1}}>A: {{res1}}</span></button>
+                <button name="boton" id="a" onclick="mostrarToast2()" class="button fondoA"><span class="amarillo" value={{res1}}>A: {{res1}}</span></button>
               </form>
             </div>
       
             <div class="opciones__item">
               <form action="/respuesta" method="post">
                 <input type="hidden" name="respuesta" value={{res2}}>
-                <button name="boton" id="b" class="button fondoA"><span class="amarillo" value={{res2}}>B: {{res2}}</span></button>
+                <button name="boton" id="b" onclick="mostrarToast2()" class="button fondoA"><span class="amarillo" value={{res2}}>B: {{res2}}</span></button>
               </form>
 
             </div>
@@ -88,13 +88,13 @@
             <div class="opciones__item">
               <form action="/respuesta" method="post">
                 <input type="hidden" name="respuesta" value={{res3}}>
-                <button name="boton" id="c" class="button fondoA"><span class="amarillo" value={{res3}}>C: {{res3}}</span></button>
+                <button name="boton" id="c" onclick="mostrarToast2()" class="button fondoA"><span class="amarillo" value={{res3}}>C: {{res3}}</span></button>
               </form>            </div>
             
             <div class="opciones__item">
               <form action="/respuesta" method="post">
                 <input type="hidden" name="respuesta" value={{res4}}>
-                <button name="boton" id="d" class="button fondoA"><span class="amarillo" value={{res4}}>D: {{res4}}</span></button>
+                <button name="boton" id="d" onclick="mostrarToast2()" class="button fondoA"><span class="amarillo" value={{res4}}>D: {{res4}}</span></button>
               </form>   
             </div>
           </div>
@@ -106,19 +106,25 @@
      <div class="toast-header">
         <strong class="mr-auto">Resultado: </strong>
            <div class="toast-body">
-           La Votacion es: {{valor1}}
+           La Votacion es: {{req.session.respuesta}}
             </div>
-          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Cerrar" onclick="cerrarToast()">
-            
+          <button type="button" class="ml-1  mb-1 close" data-dismiss="toast" aria-label="Cerrar" onclick="cerrarToast()">
             <span aria-hidden="true">×</span>
         </button>
- 
-    </div>
- 
+   </div>
 </div>
-
-
-
+<!-- respueta ganadora!-->
+<div role="alert" id="mitoast2" aria-live="assertive" aria-atomic="true" class="toast">
+     <div class="toast-header">
+        <strong class="mr-auto">Respuesta Correcta: </strong>
+           <div class="toast-body">
+           {{dato}}
+            </div>
+          <button type="button" class="ml-1  mb-1 close" data-dismiss="toast" aria-label="Cerrar" onclick="cerrarToast()">
+            <span aria-hidden="true">×</span>
+        </button>
+   </div>
+</div>
 
 <script>
 function mostrarToast() {
@@ -131,17 +137,29 @@ function cerrarToast() {
     toast.className = "cerrar";
     toast.className = toast.className.replace("cerrar", "");
 }
+function mostrarToast2() {
+  var toast = document.getElementById("mitoast2");
+  toast.className = "mostrar";
+  setTimeout(function(){ toast.className = toast.className.replace("mostrar", ""); }, 5000);
+}
+function cerrarToast2() {
+    var toast = document.getElementById("mitoast2");
+    toast.className = "cerrar";
+    toast.className = toast.className.replace("cerrar", "");
+}
 </script>
 
  
 
 <footer>
 <div class="opciones">
-  <form  action="/solucion" method="POST">
-      <input type="submit" value="Mostrar Solucion" class="btn btn-warning">
+  
+    <input type="submit" class="btn btn-warning" onclick="mostrarToast2()"value="Mostrar Solucion">
+  
+  <form  action="/mostrarVotacion" method="POST">
+      <input type="submit" class="btn btn-success" onclick="mostrarToast()"value="Mostrar Votacion">
   </form>
- 
-  <button type="button" class="btn btn-success" onclick="mostrarToast()">Mostrar Votación</button>
+  
 
   <form  action="/juegoAlumno" method="POST">
       

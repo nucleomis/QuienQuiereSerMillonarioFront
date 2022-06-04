@@ -42,7 +42,7 @@ router.post("/juegoAlumno",(req,res)=>{
       res2:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[1].respuesta,
       res3:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[2].respuesta,
       res4:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[3].respuesta,
-      nropreg:req.session.nropreg,
+      nropreg:req.session.nropreg,dato:req.session.respuesta,
     });
   }
   else{
@@ -98,11 +98,12 @@ router.post("/respuesta",(req,res)=>{
       res2:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[1].respuesta,
       res3:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[2].respuesta,
       res4:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[3].respuesta,
+      dato:req.session.respuesta,
     });
   
 });
 
-router.post("/solucion",(req,res)=>{
+/*router.post("/solucion",(req,res)=>{
   var dato = "la respuesta correcta es: "+req.session.respuesta;
   var datosjuego = req.session.juegoiniciado.data;
   res.render("juegoAlumno",
@@ -119,9 +120,70 @@ router.post("/solucion",(req,res)=>{
       res4:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[3].respuesta,
     });
 
+});*/
+
+/// MUESTRO LA MAS VOTADA
+
+router.post("/mostrarVotacion",(req, res)=>{
+  const url = "https://qqsm-api.herokuapp.com/votar/quevotar";
+    
+  (async () => {
+    const rawResponse = await fetch(url,{
+      method: 'GET'
+    });
+    const content = await rawResponse.json();
+    req.session.content=content;
+    console.log(req.session.content);
+    req.session.id = content.data.id;
+    req.session.tipoVotacion = content.data.tipoVotacion;
+    req.session.valor1 = content.data.valor1;
+    req.session.valor2 = content.data.valor2;
+    req.session.valor3 = content.data.valor3;
+    req.session.valor4 = content.data.valor4;
+    req.session.puntoa = content.data.punto1;
+    req.session.puntob = content.data.punto2;
+    req.session.puntoc = content.data.punto3;
+    req.session.puntod = content.data.punto4;
+    req.session.content = content.data;
+    
+      var magia = {id:1,
+      tipoVotacion:req.session.tipoVotacion,
+      valor1:req.session.valor1,
+      valor2:req.session.valor2,
+      valor3:req.session.valor3,
+      valor4:req.session.valor4,
+      punto1:req.session.puntoa,
+      punto2:req.session.puntob,
+      punto3:req.session.puntoc,
+      punto4:req.session.puntod};
+      
+      console.log(magia);
+
+      //
+      let kokiArrayRespuesta = [magia.valor1,magia.valor2,magia.valor3,magia.valor4];
+      let kokiArrayPuntaje= [magia.punto1,magia.punto2,magia.punto3,magia.punto4];
+      req.session.puntajeGanador;
+      req.session.respuestaGanadora;
+      indice=0;  
+      var puntajeGanador=0;
+      for (let indice = 0; indice < kokiArrayRespuesta.length; indice++) {
+        if (  kokiArrayPuntaje[indice] > puntajeGanador){
+          puntajeGanador = kokiArrayPuntaje[indice];
+          req.session.puntajeGanador=kokiArrayPuntaje[indice];
+          req.session.respuestaGanadora=kokiArrayRespuesta[indice];
+          console.log(req.session.puntajeGanador)
+        }       
+              
+      }
+      console.log("Respuesta Ganadora:"+req.session.respuestaGanadora+" con: "+req.session.puntajeGanador+" puntos.")
+      
+      
+    
+
+  })()
+
+      
 });
-
-
 
 
 
