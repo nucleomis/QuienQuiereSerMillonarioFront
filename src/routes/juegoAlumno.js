@@ -42,7 +42,7 @@ router.post("/juegoAlumno",(req,res)=>{
       res2:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[1].respuesta,
       res3:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[2].respuesta,
       res4:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[3].respuesta,
-      nropreg:req.session.nropreg,dato:req.session.respuesta,
+      nropreg:req.session.nropreg,
     });
   }
   else{
@@ -63,7 +63,7 @@ router.post("/respuesta",(req,res)=>{
   console.log("capturo la respuesta correcta: "+ correcta);
   console.log("capturo los botones: "+req.body.respuesta);
 
-
+  
   if(respuesta===correcta){
     if(req.session.nivel===1){
       
@@ -98,12 +98,11 @@ router.post("/respuesta",(req,res)=>{
       res2:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[1].respuesta,
       res3:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[2].respuesta,
       res4:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[3].respuesta,
-      dato:req.session.respuesta,
+      nropreg:req.session.nropreg,
     });
   
 });
-
-/*router.post("/solucion",(req,res)=>{
+router.post("/solucion",(req,res)=>{
   var dato = "la respuesta correcta es: "+req.session.respuesta;
   var datosjuego = req.session.juegoiniciado.data;
   res.render("juegoAlumno",
@@ -118,9 +117,12 @@ router.post("/respuesta",(req,res)=>{
       res2:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[1].respuesta,
       res3:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[2].respuesta,
       res4:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[3].respuesta,
+      nropreg:req.session.nropreg,
     });
 
-});*/
+});
+
+
 
 /// MUESTRO LA MAS VOTADA
 
@@ -175,8 +177,26 @@ router.post("/mostrarVotacion",(req, res)=>{
         }       
               
       }
-      console.log("Respuesta Ganadora:"+req.session.respuestaGanadora+" con: "+req.session.puntajeGanador+" puntos.")
+      console.log("Respuesta mas Votada: "+req.session.respuestaGanadora+" con "+req.session.puntajeGanador+" votaciones.")
       
+      var dato = "Respuesta mas Votada: "+req.session.respuestaGanadora+" con "+req.session.puntajeGanador+" votaciones.";
+      
+      var datosjuego = req.session.juegoiniciado.data;
+      res.render("juegoAlumno",
+    { idJuego:req.session.idJuego,
+      puntaje: req.session.puntaje, 
+      dato: dato,   
+      idJuego:req.session.idJuego,
+      puntaje: req.session.puntaje, 
+      nombreParticipante:req.session.nombreParticipante, 
+      pregunta:datosjuego.preguntas[req.session.indicepregunta-1].pregunta,
+      res1:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[0].respuesta,
+      res2:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[1].respuesta,
+      res3:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[2].respuesta,
+      res4:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[3].respuesta,
+      nropreg:req.session.nropreg,
+    });
+    
       
     
 

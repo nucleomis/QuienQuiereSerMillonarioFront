@@ -37,16 +37,14 @@
         </ul>
   </div>
 </nav>
-<br></br>
 
-<!--{{#if dato}}
+{{#if dato}}
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
         {{dato}}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-{{/if}}!-->
+{{/if}}
 
-<br></br>
 <div class="container text-start">
         <h2 style="color: aliceblue; -webkit-text-stroke: 2px rgb(94, 91, 91);">Puntaje Actual: {{puntaje}}</h2>
         <h2 style="color: rgb(216, 231, 5); -webkit-text-stroke: 2px rgb(77, 75, 75);">Ronda Numero {{nropreg}} de 10</h2>
@@ -67,14 +65,14 @@
             <div class="opciones__item">
               <form action="/respuesta" method="post">
                 <input type="hidden" name="respuesta" value={{res1}}>
-                <button name="boton" id="a" onclick="mostrarToast2()" class="button fondoA"><span class="amarillo" value={{res1}}>A: {{res1}}</span></button>
+                <button name="boton" id="a" class="button fondoA"><span class="amarillo" value={{res1}}>A: {{res1}}</span></button>
               </form>
             </div>
       
             <div class="opciones__item">
               <form action="/respuesta" method="post">
                 <input type="hidden" name="respuesta" value={{res2}}>
-                <button name="boton" id="b" onclick="mostrarToast2()" class="button fondoA"><span class="amarillo" value={{res2}}>B: {{res2}}</span></button>
+                <button name="boton" id="b" class="button fondoA"><span class="amarillo" value={{res2}}>B: {{res2}}</span></button>
               </form>
 
             </div>
@@ -88,13 +86,13 @@
             <div class="opciones__item">
               <form action="/respuesta" method="post">
                 <input type="hidden" name="respuesta" value={{res3}}>
-                <button name="boton" id="c" onclick="mostrarToast2()" class="button fondoA"><span class="amarillo" value={{res3}}>C: {{res3}}</span></button>
+                <button name="boton" id="c" class="button fondoA"><span class="amarillo" value={{res3}}>C: {{res3}}</span></button>
               </form>            </div>
             
             <div class="opciones__item">
               <form action="/respuesta" method="post">
                 <input type="hidden" name="respuesta" value={{res4}}>
-                <button name="boton" id="d" onclick="mostrarToast2()" class="button fondoA"><span class="amarillo" value={{res4}}>D: {{res4}}</span></button>
+                <button name="boton" id="d" class="button fondoA"><span class="amarillo" value={{res4}}>D: {{res4}}</span></button>
               </form>   
             </div>
           </div>
@@ -102,7 +100,7 @@
     </div>
 </div>
 
-<div role="alert" id="mitoast" aria-live="assertive" aria-atomic="true" class="toast">
+<!--<div role="alert" id="mitoast" aria-live="assertive" aria-atomic="true" class="toast">
      <div class="toast-header">
         <strong class="mr-auto">Resultado: </strong>
            <div class="toast-body">
@@ -113,7 +111,7 @@
         </button>
    </div>
 </div>
-<!-- respueta ganadora!-->
+ respueta ganadora
 <div role="alert" id="mitoast2" aria-live="assertive" aria-atomic="true" class="toast">
      <div class="toast-header">
         <strong class="mr-auto">Respuesta Correcta: </strong>
@@ -124,9 +122,9 @@
             <span aria-hidden="true">×</span>
         </button>
    </div>
-</div>
+</div>!-->
 
-<script>
+<!--<script>
 function mostrarToast() {
   var toast = document.getElementById("mitoast");
   toast.className = "mostrar";
@@ -148,16 +146,18 @@ function cerrarToast2() {
     toast.className = toast.className.replace("cerrar", "");
 }
 </script>
-
+!-->
  
 
 <footer>
 <div class="opciones">
-  
-    <input type="submit" class="btn btn-warning" onclick="mostrarToast2()"value="Mostrar Solucion">
+  <form  action="/solucion" method="POST">
+      <input type="submit" class="btn btn-success" value="Mostrar Solucion">
+  </form>
+ 
   
   <form  action="/mostrarVotacion" method="POST">
-      <input type="submit" class="btn btn-success" onclick="mostrarToast()"value="Mostrar Votacion">
+      <input type="submit" class="btn btn-warning" value="Mostrar Votacion">
   </form>
   
 
