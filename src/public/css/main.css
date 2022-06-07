@@ -1,3 +1,7 @@
+.html,body{
+  /* Para que funcione correctamente en Smartphones y Tablets */
+  height:100vh;
+}
 body{/*fondo degradado desde: uigradients.com*/
     
     background-image: url("https://wilmancuellar.com/wp-content/uploads/2017/08/millonario.jpg");

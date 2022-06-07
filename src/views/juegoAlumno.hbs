@@ -1,27 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark d-flex" style="background-color:lightslategrey;">
   <div class="container">
-    <div class="container-fluid d-flex">
-      <a class="navbar-brand" href="/">Panel del Juego</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>  
-    <div class="container-fluid d-flex">
-      <a class="navbar-brand" href="/">Id: {{idJuego}}</a>
-      <a class="navbar-brand fs-5" >Participante: {{nombreParticipante}}</a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div> 
-      
-    
-  </div>
-  <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse d-flex" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white;">
-                  Cerrar sesion  
+                  Menu 
                 </a>
                 <form style="background-color: lightslategrey;"></form>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: lightslategrey; color:white">
@@ -36,6 +19,17 @@
             </li>
         </ul>
   </div>
+  <div class="container-fluid d-flex">
+    <a class="navbar-brand" href="/">Panel del Juego</a>
+  </div>  
+  <div class="container-fluid d-flex">
+    <a class="navbar-brand" href="/">Id: {{idJuego}}</a>
+    <a class="navbar-brand fs-5" >Participante: {{nombreParticipante}}</a>
+  </div> 
+      
+    
+  </div>
+
 </nav>
 
 {{#if dato}}
@@ -149,7 +143,7 @@ function cerrarToast2() {
 !-->
  
 
-<footer>
+<footer class="text-center">
 <div class="opciones">
   <form  action="/solucion" method="POST">
       <input type="submit" class="btn btn-success" value="Mostrar Solucion">
@@ -166,9 +160,6 @@ function cerrarToast2() {
         <input type="submit" value="Siguiente Pregunta" class="btn btn-primary">
       </form>
  </div>
-  
-
-  
     <div class="opciones">
         <form action="/magiaPista" method="POST">
         <input type="submit" value="Pistas" class="btn btn-primary mb-2">
@@ -183,7 +174,3 @@ function cerrarToast2() {
   
 
 </footer>
-<br>
-<br>
-<br>
-

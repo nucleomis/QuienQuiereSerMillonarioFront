@@ -1,39 +1,32 @@
 <nav class="navbar navbar-expand-lg navbar-dark d-flex" style="background-color:lightslategrey;">
   <div class="container">
-    <div class="container-fluid d-flex">
-      <a class="navbar-brand" href="/">Participante</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>     
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/index"><i class="bi bi-arrow-left-circle" style="font-size: 25px;"></i></a>
-          </li>    
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse d-flex" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white;">
-                  Cerrar sesion  
+                  Menu 
                 </a>
                 <form style="background-color: lightslategrey;"></form>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: lightslategrey; color:white">
-                    <li style="text-align:center"><i class="bi bi-person-fill" style="font-size: 150%; background-color:blue"></i></li>
                     <li><a class="dropdown-item" href="#">Nombre Administrador: {{nombre}}</a></li>
                     <li><a class="dropdown-item" href="#">Apellido Administrador: {{apellido}}</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <form action="/cerrar" method="post" style="text-align: center;">
-                      <input type="submit" value="Cerrar Sesion" style="background-color: lightslategrey;">
+                    <form action="/cerrar" method="post">
+                      <input type="submit" value="Cerrar Sesion">
                     </form><!--<input type="submit" value="Cerrar Sesion">-->
                 </ul>
             </li>
+
         </ul>
+      </div>
+    <div class="btn btn-secundary btn-xs">
+      <a class="navbar-brand" href="/">Cargas de Preguntas y Respuestas</a>
+      
+    </div>
   </div>
+  
 </nav>
+
 
 <div class="col-md-4 mx-auto mt-2">
     <div class="card">

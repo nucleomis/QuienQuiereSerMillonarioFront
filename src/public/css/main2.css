@@ -284,6 +284,17 @@
   color:yellow;
   font-family: 'Times New Roman', Times, serif;*/
 }
+.opciones{
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  text-align: center;
+  min-width: 100vh;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 2% solid #999;
+}
+
 .boton{
   text-align: center;
   margin: 1rem;
