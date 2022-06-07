@@ -217,7 +217,7 @@ router.post("/mostrarVotacion",(req, res)=>{
         }
         if(req.session.tipoVotacion===2){
           
-          var msgdato = "Respuesta mas Votada:";
+          var msgdato = "Respuesta mas Votada: ";
           var dato = msgdato + req.session.respuestaGanadora1 + " con "+req.session.puntajeGanador1 + " votaciones.";
         }
         if(req.session.tipoVotacion===3){
