@@ -1,3 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:lightslategrey;">
+    <div class="container-fluid">
+        <a class="navbar-brand">Quien quiere ser Millonario</a>
+    </div> 
+    <div class="btn btn-secundary btn-lg" id="navbarNav">
+        <form action="/nuevoVotante" method="post">
+            <input style="background-color: lightslategrey;" type="submit" name="participante" value="Votantes">
+        </form>
+    </div>
+  </div>
+</nav>
+
+{{#if errorMesnsaje}}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{errorMesnsaje}}<!--agrego el texto con el string que setee en el controlador-->
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{{/if}}
 <div class="container-fluid" id="container-fluid">
     
             <div class="container-form sign-up">

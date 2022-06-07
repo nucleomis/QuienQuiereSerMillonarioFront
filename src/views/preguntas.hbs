@@ -1,3 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-dark d-flex" style="background-color:lightslategrey;">
+  <div class="container">
+    <div class="container-fluid d-flex">
+      <a class="navbar-brand" href="/">Cargas de Preguntas y Respuestas</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>     
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/index"><i class="bi bi-arrow-left-circle" style="font-size: 25px;"></i></a>
+          </li>    
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white;">
+                  Cerrar sesion  
+                </a>
+                <form style="background-color: lightslategrey;"></form>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: lightslategrey; color:white">
+                    <li><a class="dropdown-item" href="#">Nombre Administrador: {{nombre}}</a></li>
+                    <li><a class="dropdown-item" href="#">Apellido Administrador: {{apellido}}</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <form action="/cerrar" method="post">
+                      <input type="submit" value="Cerrar Sesion">
+                    </form><!--<input type="submit" value="Cerrar Sesion">-->
+                </ul>
+            </li>
+
+        </ul>
+      </div>
+</nav>
+
+<div class="alert alert-primary text-center" role="alert">
+  <h3>{{nombreJuego}}</h3>
+</div>
+
 <div class="col-md-4 mx-auto mt-2">
     <div class="card">
         <div class="card-header"> Escriba las Preguntas y sus Respuestas</div>
@@ -9,25 +50,25 @@
             {{/if}}
             <form action="/preguntas" method="POST">
                 <div class="form-group">
-                    <input type="text" name="pregunta" class="form-control" placeholder="Pregunta" autofocus>
+                    <input type="text" required='required' name="pregunta" class="form-control" placeholder="Pregunta"  autofocus>
                 </div>
                 <div class="form-group mt-2">
-                    <input type="text" name="res1" class="form-control" placeholder="Respuesta 1 (Correcta)">
+                    <input type="text" required='required' name="res1" class="form-control" placeholder="Respuesta 1 (Correcta)">
                 </div>
                 <div class="form-group mt-2">
-                    <input type="text" name="res2" class="form-control" placeholder="Respuesta 2">
+                    <input type="text" required='required' name="res2" class="form-control" placeholder="Respuesta 2">
                 </div>
                 <div class="form-group mt-2">
-                    <input type="text" name="res3" class="form-control" placeholder="Respuesta 3">
+                    <input type="text" required='required' name="res3" class="form-control" placeholder="Respuesta 3">
                 </div>
                 <div class="form-group mt-2">
-                    <input type="text" name="res4" class="form-control" placeholder="Respuesta 4">
+                    <input type="text" required='required' name="res4" class="form-control" placeholder="Respuesta 4">
                 </div>
                 <div class="form-group mt-1">
-                    <input type="text" name="pista1" class="form-control" placeholder="Pista 1">
+                    <input type="text" required='required' name="pista1" class="form-control" placeholder="Pista 1">
                 </div>
                 <div class="form-group mt-1">
-                    <input type="text" name="pista2" class="form-control" placeholder="Pista 2">
+                    <input type="text" required='required' name="pista2" class="form-control" placeholder="Pista 2">
                 </div>
                 
 
@@ -35,24 +76,34 @@
                 <input type="hidden" name="numeroPregunta" value="{{numeroPregunta}}">
             <div class="d-grid gap-1 mt-3">
                 {{#if dificultad}}
-                    <input type="text" class="form-control" placeholder="Nivel de Dificultad: {{dificultad}}" disabled="disabled" style="background-color: #031fbe;">
+                    <input type="text" class="form-control" placeholder="Nivel de Dificultad: {{dificultad}}" disabled="disabled" style="background-color: #56f337;">
                 {{else}}
-                    <input type="text" class="form-control" placeholder="Nivel de Dificultad: 1" disabled="disabled" style="background-color: #031fbe;">
+                    <input type="text" class="form-control" placeholder="Nivel de Dificultad: 1" disabled="disabled" style="background-color: #56f337;">
                 {{/if}}
             </div>
 
             <div class="d-grid gap-1 mt-2">
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="SIGUIENTE"></input>
-            
-            {{#if habilitado}}
-                <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="FINALIZAR"></input>
-            {{else}}
-                <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="GUARDAR" disabled="disabled"></input>
-            </div>                    
-            {{/if}}
-            </div>
-        </form>
-    </card>
-</div>
+                    <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="SIGUIENTE"></input> 
+                    {{#if habilitado}}
+                        {{#if finalizar}}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="FINALIZAR"></input>
+                            </div>
+                            
+                        {{else}}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="GUARDAR"></input>
+                            </div>
+                        {{/if}}
+                    {{else}}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="GUARDAR" disabled="disabled"></input>
+                        </div>                    
+                    {{/if}}
+                    
+                </div>
+             </form>
+        </card>
+    </div>
 </div>

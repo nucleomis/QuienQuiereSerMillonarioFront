@@ -55,9 +55,15 @@ app.use(require("./routes/panelPrincipal"));
 app.use(require("./routes/formulario"));
 app.use(require("./routes/preguntas"));
 app.use(require("./routes/juegoAlumno"));
+app.use(require("./routes/participante"));
+app.use(require("./routes/votante"));
+app.use(require("./routes/votantes1"));
+app.use(require("./routes/CerrarSesion"));
+//app.use(require("./routes/finJuego"));
 
 //archivos estaticos
 app.use(express.static(path.join(__dirname, "public")));
 
 //escucha del servidor
 app.listen(app.get("port"), ()=> console.log("Servidor en el puerto ",app.get("port")));
+

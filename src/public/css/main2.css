@@ -15,13 +15,13 @@
 
   /* Grosor de la línea que pasa a través
      de los botones */
-  --grosor: 7px;
+  --grosor: 15px;
 
   /* Altura de los botones */
-  --height: 35px;
+  --height: 50px;
 
   /* Anchura máxima del contenedor principal */
-  --width: 800px;
+  --width: 1400px;
 
   /* El relleno de los botones en porcentaje
      que será directamente proporcional a la 
@@ -48,6 +48,7 @@
   /* Imágenes de fondo de los botones */
   --fondoA: linear-gradient(90deg, rgba(14, 62, 190, 0.6) 20%, rgba(7, 31, 95, 0.9) 80%);
   --fondoB: linear-gradient(90deg, rgba(7, 31, 95, 0.9) 20%, rgba(14, 62, 190, 0.6) 80%);
+  --fondoc: linear-gradient(90deg, rgba(225, 230, 245, 0.6) 20%, rgba(225, 228, 238, 0.9) 80%);
 }
 
 /* Contenedor principal */
@@ -67,7 +68,7 @@
 /* Margen superior del contenedor
    de los botones, menos el primer contenedor */
 .millonario__item:not(:first-of-type) {
-  margin-top: 10px;
+  margin-top: 100px;
 }
 
 /* Línea cilíndrica que atraviesa los botones de opciones de
@@ -117,6 +118,17 @@
 }
 
 .opciones__item {
+  --padding: 10px;
+  --divisor: 4;
+
+  transition: 300ms ease;
+  flex-shrink: 1;
+  flex-grow: 1;
+  flex-basis: 50%;
+  position: relative;
+  min-height: var(--height);
+}
+.opciones__pregunta {
   --padding: 50px;
   --divisor: 4;
 
@@ -246,4 +258,121 @@
 /* Colores */
 .amarillo {
   color: var(--color-terciario);
+}
+.formato{
+  
+  margin: auto;
+  text-align: center;
+  border-radius: 40%;
+  background-color:lightskyblue;
+  height: 40px;
+  width: 700px;
+  border-color: #0e3ebe;
+  font-family: 'Times New Roman', Times, serif;
+}
+.boton_pista{
+  text-align: center;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 2% solid #999;
+  /*margin: auto;
+  text-align: center;
+  border-radius: 25px;
+  height: 60px;
+  width: 50px;
+  background-color:blue;
+  color:yellow;
+  font-family: 'Times New Roman', Times, serif;*/
+}
+.opciones{
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  text-align: center;
+  min-width: 100vh;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 2% solid #999;
+}
+
+.boton{
+  text-align: center;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 2% solid #999;
+}
+
+
+/*TOAST*/
+#mitoast.cerrar {
+  /* visibility: visible; */
+  -webkit-animation: fadeout 0.5s 4.8s;
+  animation: fadeout 0.5s 4.8s;
+}
+ 
+@-webkit-keyframes fadeout {
+  from {right: 2.5%; opacity: 1;} 
+  to {right: 0; opacity: 0;}
+}
+ 
+@keyframes fadeout {
+  from {right: 2.5%; opacity: 1;}
+  to {right: 0; opacity: 0;}
+}
+
+#mitoast {
+  visibility: hidden;
+  position: fixed;
+  z-index: 1;
+  right: 2.5%;
+  top: 50%;
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: .25rem;
+  box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.1);
+  max-width: 310px;
+  width: 310px;
+  background-color: #ffffff;
+  opacity: 1;
+}
+ 
+#mitoast.mostrar {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 4.6s;
+  animation: fadein 0.5s, fadeout 0.5s 4.6s;
+}
+ 
+@-webkit-keyframes fadein {
+  from {right: 0; opacity: 0;} 
+  to {right: 2.5%; opacity: 1;}
+}
+ 
+@keyframes fadein {
+  from {right: 0; opacity: 0;}
+  to {right: 2.5%; opacity: 1;}
+}
+ 
+@-webkit-keyframes fadeout {
+  from {right: 2.5%; opacity: 1;} 
+  to {right: 0; opacity: 0;}
+}
+ 
+@keyframes fadeout {
+  from {right: 2.5%; opacity: 1;}
+  to {right: 0; opacity: 0;}
+}
+ 
+#mitoast.cerrar {
+  /* visibility: visible; */
+  -webkit-animation: fadeout 0.5s 4.8s;
+  animation: fadeout 0.5s 4.8s;
+}
+ 
+@-webkit-keyframes fadeout {
+  from {right: 2.5%; opacity: 1;} 
+  to {right: 0; opacity: 0;}
+}
+ 
+@keyframes fadeout {
+  from {right: 2.5%; opacity: 1;}
+  to {right: 0; opacity: 0;}
 }

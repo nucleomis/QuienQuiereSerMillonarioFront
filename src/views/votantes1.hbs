@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-lg navbar-dark d-flex" style="background-color:rgb(11, 105, 199);">
+  <div class="container">
+    <div class="container-fluid d-flex">
+      <a class="navbar-brand" href="/"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>     
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/index"><i class="bi bi-arrow-left-circle" style="font-size: 25px;"></i></a>
+          </li> 
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/index">Id del juego: {{idJuego}}</a>
+          </li>   
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>      
+        
+  <div class="opciones">
+        <form class="container-fluid d-flex" action="/lamagia" method="POST" id="formvotante">
+          <div class="form-group mt-2">
+            <input type="submit" name="btn1" value="PARTICIPAR" class="btn btn-primary btn-lg mb-2">
+          </div>
+        </form>
+  </div>
+  <div class="d-flex flex-row justify-content-center alig-items-center">
+
+    <li>
+      <ul>
+        {{#if btnpista}}
+        <form class="container-fluid d-flex" action="/votoOpcion1" method="POST" id="formvotante">
+          <div class="form-group mt-2">
+            <input type="submit" name="btn1" value={{valor1}} class="btn btn-danger mb-2">
+          </div>
+        </form>
+      </ul>
+      <ul>                
+        <form class="container-fluid d-flex" action="/votoOpcion2" method="POST" id="formvotante">        
+          <div class="form-group mt-2">
+            <input type="submit" name="btn2" value={{valor2}} class="btn btn-warning mb-2">
+          </div>
+        </form>         
+        {{/if}}          
+      </ul>
+      <ul>  
+        {{#if btnrespuesta}}
+        <form class="container-fluid d-flex" action="/votoOpcion1" method="POST" id="formvotante">
+          <div class="form-group mt-2">
+            <input type="submit" name="btn1" value={{valor1}} class="btn btn-danger mb-2">
+          </div>
+        </form>
+      </ul>
+      <ul>                   
+        <form class="container-fluid d-flex" action="/votoOpcion2" method="POST" id="formvotante">        
+          <div class="form-group mt-2">
+            <input type="submit" name="btn2" value={{valor2}} class="btn btn-warning mb-2">
+          </div>
+        </form>
+      </ul>
+      <ul> 
+        <form class="container-fluid d-flex" action="/votoOpcion3" method="POST" id="formvotante">           
+          <div class="form-group mt-2">
+            <input type="submit" name="btn3" value={{valor3}} class="btn btn-success mb-2">
+          </div>
+        </form>
+      </ul>
+      <ul>
+        <form class="container-fluid d-flex" action="/votoOpcion4" method="POST" id="formvotante">
+          <div class="form-group mt-2">
+            <input type="submit" name="btn4" value={{valor4}} class="btn btn-primary mb-2">
+          </div>
+        </form>
+        {{/if}}
+      </ul>
+    </li>
+  </div> 

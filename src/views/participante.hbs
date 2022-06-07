@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-dark d-flex" style="background-color:lightslategrey;">
+  <div class="container">
+      <div class="collapse navbar-collapse d-flex" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white;">
+                  Menu 
+                </a>
+                <form style="background-color: lightslategrey;"></form>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: lightslategrey; color:white">
+                    <li><a class="dropdown-item" href="#">Nombre Administrador: {{nombre}}</a></li>
+                    <li><a class="dropdown-item" href="#">Apellido Administrador: {{apellido}}</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <form action="/cerrar" method="post">
+                      <input type="submit" value="Cerrar Sesion">
+                    </form><!--<input type="submit" value="Cerrar Sesion">-->
+                </ul>
+            </li>
+
+        </ul>
+      </div>
+    <div class="btn btn-secundary btn-xs">
+      <a class="navbar-brand" href="/">Cargas de Preguntas y Respuestas</a>
+      
+    </div>
+  </div>
+  
+</nav>
+
+
+<div class="col-md-4 mx-auto mt-2">
+    <div class="card">
+        <div class="card-header" style="font-family: 'Times New Roman', Times, serif; color:black; font-size: 23px;"> Escriba el nombre del participante</div>
+        <card class="card-body">
+            <form action="/juegoAlumno" method="POST">
+                <div class="form-group">
+                    <input type="text" required='required' name="nombreParticipante" class="form-control" placeholder="Nombre Participante" autofocus>
+                </div>
+                <div class="boton">
+                <input type="submit" value="Comencemos" class="btn btn-primary mb-2">
+                </div>
+            </form>
+        </card>
+    </div>
+</div>    

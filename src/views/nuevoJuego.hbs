@@ -1,11 +1,40 @@
-<div class="col-md-4 mx-auto mt-2">
+<nav class="navbar navbar-expand-lg navbar-dark d-flex" style="background-color:lightslategrey;">
+  <div class="container">
+      <div class="collapse navbar-collapse d-flex" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white;">
+                  Menu 
+                </a>
+                <form style="background-color: lightslategrey;"></form>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: lightslategrey; color:white">
+                    <li style="text-align:center"><i class="bi bi-person-fill" style="font-size: 150%; background-color:blue"></i></li>
+                    <li><a class="dropdown-item" href="#">Nombre Administrador: {{nombre}}</a></li>
+                    <li><a class="dropdown-item" href="#">Apellido Administrador: {{apellido}}</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <form action="/cerrar" method="post" style="text-align: center;">
+                      <input type="submit" value="Cerrar Sesion" style="background-color: lightslategrey;">
+                    </form><!--<input type="submit" value="Cerrar Sesion">-->
+                </ul>
+            </li>
+
+        </ul>
+      </div>
+    <div class="btn btn-secundary btn-xs" >
+      <a class="navbar-brand" href="/">Agregar un Nuevo Juego</a>
+    </div>
+  </div>
+</nav>
+<div class="col-md-4 mx-auto mt-2" style="border-radius: 25%;">
     <div class="card">
-        <div class="card-header"> Escriba el Nombre del Juego</div>
-            <form action="/preguntas" method="POST">
+        <div class="card-header"> Escriba el Nombre del Juego
+            
+        </div>
+            <form action="/formulariopreguntas" method="POST">
                 <div class="form-group">
                     <div class="d-grid gap-1 mt-2">    
-                    <input type="text" name="juego" class="form-control" placeholder="Nombre del Juego" autofocus>
-                    <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="GUARDAR"></input>
+                    <input type="text" required='required' name="nombreJuego" class="form-control" placeholder="Nombre del Juego" autofocus>
+                    <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="Continuar"></input>
                 </div>
                 </div>
              
