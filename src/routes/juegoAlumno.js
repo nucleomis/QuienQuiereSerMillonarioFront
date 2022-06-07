@@ -168,18 +168,66 @@ router.post("/mostrarVotacion",(req, res)=>{
       req.session.respuestaGanadora;
       indice=0;  
       var puntajeGanador=0;
-      for (let indice = 0; indice < kokiArrayRespuesta.length; indice++) {
-        if (  kokiArrayPuntaje[indice] > puntajeGanador){
-          puntajeGanador = kokiArrayPuntaje[indice];
-          req.session.puntajeGanador=kokiArrayPuntaje[indice];
-          req.session.respuestaGanadora=kokiArrayRespuesta[indice];
-          console.log(req.session.puntajeGanador)
-        }       
-              
+      for (let i = 0; i < kokiArrayRespuesta.length; i++) {
+        for (let j = 0; j < kokiArrayRespuesta.length -1; j++) {
+          if (kokiArrayRespuesta[j] < kokiArrayRespuesta[j + 1])
+          {
+              auxpreg = kokiArrayRespuesta[j];
+              auxpunt = kokiArrayPuntaje[j];
+              kokiArrayRespuesta[j] = kokiArrayRespuesta[j + 1];
+              kokiArrayPuntaje[j] = kokiArrayPuntaje[j + 1];
+              kokiArrayRespuesta[j + 1] = auxpreg;
+              kokiArrayPuntaje[j + 1] = auxpunt;
+          }
+        }
       }
+      /*Asignamos el primer numero mayor*/
+      primresp = kokiArrayRespuesta[0];
+      primpunt = kokiArrayPuntaje[0];
+      /*Establecemos un valor para nuestro ciclo*/
+      var n = 1;
+      /*Comenzamos a buscar el siguiente numero mayor en la poscion 1*/
+      do
+      {                
+          n++;
+      }
+      while (kokiArrayRespuesta[n]==primresp);
+      segresp = kokiArrayRespuesta[n];
+
+      var n = 1;
+      do
+      {                
+          n++;
+      }
+      while (kokiArrayPuntaje[n]==primpunt);
+      segpunt = kokiArrayPuntaje[n];
+
+              
+      req.session.respuestaGanadora1 = primresp;
+      req.session.respuestaGanadora2 = segresp;
+      req.session.puntajeGanador1 = primpunt;
+      req.session.puntajeGanador2 = segpunt;
+      
       console.log("Respuesta mas Votada: "+req.session.respuestaGanadora+" con "+req.session.puntajeGanador+" votaciones.")
       
-      var dato = "Respuesta mas Votada: "+req.session.respuestaGanadora+" con "+req.session.puntajeGanador+" votaciones.";
+        if(req.session.tipoVotacion===1){
+
+          var msgdato = "Pista mas Votada: ";
+          var dato = msgdato + req.session.respuestaGanadora1 + " con "+req.session.puntajeGanador1 + " votaciones.";
+        }
+        if(req.session.tipoVotacion===2){
+          
+          var msgdato = "Respuesta mas Votada:";
+          var dato = msgdato + req.session.respuestaGanadora1 + " con "+req.session.puntajeGanador1 + " votaciones.";
+        }
+        if(req.session.tipoVotacion===3){
+          
+          var msgdato = "Las 2 Respuestas Elegidas son: ";
+          var dato = msgdato + req.session.respuestaGanadora1 + " y " + req.session.respuestaGanadora2 +" con "+req.session.puntajeGanador1+ " y " + req.session.puntajeGanador2 + " votaciones respectivamente.";
+        }
+        
+      
+      
       
       var datosjuego = req.session.juegoiniciado.data;
       res.render("juegoAlumno",
