@@ -108,7 +108,7 @@ router.post("/preguntas", (req, res)=>{
             method: 'GET'
           });
           const usuario = await rawResponse.json();
-          console.log(usuario.data.id);
+          console.log("dentro de finalizar para redireccionar: "+usuario.data.id);
           //redirecciono a la pagina que quiero y envio los datos obtenidos
           console.log(usuario.data.juegos);
           req.session.idProfesor = usuario.data.id;
@@ -117,22 +117,36 @@ router.post("/preguntas", (req, res)=>{
           req.session.user = usuario.data.user;
           req.session.content = usuario;
           req.session.juegos = usuario.data.juegos;
-          res.render("panelPrincipal", {content: usuario, juegos: usuario.data.juegos, nombre:usuario.data.nombre,apellido:usuario.data.apellido,user:usuario.data.user});
+          res.render("panelPrincipal", 
+          { content: req.session.content, 
+            juegos: req.session.juegos, 
+            nombre:req.session.nombre,
+            apellido:req.session.apellido,
+            user:req.session.user
+          });
         })()
         
       })();
       
     }
-
     if(req.session.dificultad==3){
       finalizar = true;
     }
-
     if(contadorPreguntas>=4){
       habilitado = true;
     }
-    res.render("preguntas",{success_msg:req.body.success_msg,dificultad:req.session.dificultad, inicial:true, habilitado:habilitado, numeroPregunta:contadorPreguntas, finalizar:finalizar, nombreJuego:req.session.nombreJuego});
-
+    if(req.body.boton==="FINALIZAR"){
+      res.render("panelPrincipal", 
+      { content: req.session.content, 
+        juegos: req.session.juegos, 
+        nombre:req.session.nombre,
+        apellido:req.session.apellido,
+        user:req.session.user
+      });
+    }else{
+      res.render("preguntas",{success_msg:req.body.success_msg,dificultad:req.session.dificultad, inicial:true, habilitado:habilitado, numeroPregunta:contadorPreguntas, finalizar:finalizar, nombreJuego:req.session.nombreJuego});
+    }
+    
 });
 
 router.post("/borrarJuego",(req,res)=>{
