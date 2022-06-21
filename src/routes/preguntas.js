@@ -69,8 +69,8 @@ router.post("/preguntas", (req, res)=>{
       req.session.dificultad=1;
     }
 
-    var preguntaClass = {pregunta:pregunta,dificultad:req.session.dificultad,respuestas:respuestas,pistas:pistas};
-
+    let preguntaClass = {pregunta:pregunta,dificultad:req.session.dificultad,respuestas:respuestas,pistas:pistas};
+    
 
     if(req.body.boton==="SIGUIENTE"){
       req.session.preguntas.push(preguntaClass);
@@ -86,46 +86,13 @@ router.post("/preguntas", (req, res)=>{
       habilitado = null;
     }
 
-    if(req.body.boton==="FINALIZAR"){
     
-      req.session.preguntas.push(preguntaClass);
-      var data = {idProfesor: req.session.idProfesor, nombreJuego: req.session.nombreJuego,preguntas: req.session.preguntas};
-      const url2 = "https://qqsm-api.herokuapp.com/usuario/";
-      const urlLocal2 = "http://localhost:8080/usuario/";
-      console.log(data);
-      (async () => {
-        const rawResponse = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        });
-        const content = await rawResponse.json();
-        (async () => {
-          const rawResponse = await fetch(url2+req.session.idProfesor, {
-            method: 'GET'
-          });
-          const usuario = await rawResponse.json();
-          console.log(usuario.data.id);
-          //redirecciono a la pagina que quiero y envio los datos obtenidos
-          console.log(usuario.data.juegos);
-          req.session.idProfesor = usuario.data.id;
-          req.session.nombre = usuario.data.nombre;
-          req.session.apellido = usuario.data.apellido;
-          req.session.user = usuario.data.user;
-          req.session.content = usuario;
-          req.session.juegos = usuario.data.juegos;
-          res.render("panelPrincipal", {content: usuario, juegos: usuario.data.juegos, nombre:usuario.data.nombre,apellido:usuario.data.apellido,user:usuario.data.user});
-        })()
-        
-      })();
-      
-    }
 
     if(req.session.dificultad==3){
+      if(contadorPreguntas>=4){
       finalizar = true;
+      req.session.preguntaClass=preguntaClass;
+      }
     }
 
     if(contadorPreguntas>=4){
@@ -133,6 +100,44 @@ router.post("/preguntas", (req, res)=>{
     }
     res.render("preguntas",{success_msg:req.body.success_msg,dificultad:req.session.dificultad, inicial:true, habilitado:habilitado, numeroPregunta:contadorPreguntas, finalizar:finalizar, nombreJuego:req.session.nombreJuego});
 
+});
+
+router.post("/finalizarPreguntas",(req,res)=>{    
+    req.session.preguntas.push(req.session.preguntaClass);
+    var data = {idProfesor: req.session.idProfesor, nombreJuego: req.session.nombreJuego,preguntas: req.session.preguntas};
+    const url = "https://qqsm-api.herokuapp.com/usuario/";
+    const url2 = "https://qqsm-api.herokuapp.com/juego/crearJuego";
+    const urlLocal2 = "http://localhost:8080/usuario/";
+    console.log(data);
+    (async () => {
+      const rawResponse = await fetch(url2, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      const content = await rawResponse.json();
+      (async () => {
+        const rawResponse = await fetch(url+req.session.idProfesor, {
+          method: 'GET'
+        });
+        const usuario = await rawResponse.json();
+        console.log(usuario.data.id);
+        //redirecciono a la pagina que quiero y envio los datos obtenidos
+        console.log(usuario.data.juegos);
+        req.session.idProfesor = usuario.data.id;
+        req.session.nombre = usuario.data.nombre;
+        req.session.apellido = usuario.data.apellido;
+        req.session.user = usuario.data.user;
+        req.session.content = usuario;
+        req.session.juegos = usuario.data.juegos;
+        res.render("panelPrincipal", {content: usuario, juegos: usuario.data.juegos, nombre:usuario.data.nombre,apellido:usuario.data.apellido,user:usuario.data.user});
+      })()
+      
+    })();
+    
 });
 
 router.post("/borrarJuego",(req,res)=>{

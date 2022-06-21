@@ -36,15 +36,15 @@
 </nav>
 
 <div class="alert alert-primary text-center" role="alert">
-  <h3>{{nombreJuego}}</h3>
+  <h4>Nombre del Juego: {{nombreJuego}}</h4>
 </div>
 
 <div class="col-md-4 mx-auto mt-2">
     <div class="card">
-        <div class="card-header"> Escriba las Preguntas y sus Respuestas</div>
-        <card class="card-body">
+            <card class="card-body">
             {{#if numeroPregunta}}
-                <h3 class="text-center">Pregunta N° {{numeroPregunta}}</h3>
+                <h4 class="text-center">Pregunta N° {{numeroPregunta}}  </h4> 
+                
             {{else}}
                 <h3 class="text-center">Pregunta N° 1</h3>
             {{/if}}
@@ -52,16 +52,16 @@
                 <div class="form-group">
                     <input type="text" required='required' name="pregunta" class="form-control" placeholder="Pregunta"  autofocus>
                 </div>
-                <div class="form-group mt-2">
+                <div class="form-group mt-1">
                     <input type="text" required='required' name="res1" class="form-control" placeholder="Respuesta 1 (Correcta)">
                 </div>
-                <div class="form-group mt-2">
+                <div class="form-group mt-1">
                     <input type="text" required='required' name="res2" class="form-control" placeholder="Respuesta 2">
                 </div>
-                <div class="form-group mt-2">
+                <div class="form-group mt-1">
                     <input type="text" required='required' name="res3" class="form-control" placeholder="Respuesta 3">
                 </div>
-                <div class="form-group mt-2">
+                <div class="form-group mt-1">
                     <input type="text" required='required' name="res4" class="form-control" placeholder="Respuesta 4">
                 </div>
                 <div class="form-group mt-1">
@@ -71,39 +71,37 @@
                     <input type="text" required='required' name="pista2" class="form-control" placeholder="Pista 2">
                 </div>
                 
-
+                {{#if dificultad}}
+                    <input type="text" class="form-control" placeholder="Nivel de Dificultad: {{dificultad}}" disabled="disabled" style="background-color: #022553;">
+                {{else}}
+                    <input type="text" class="form-control" placeholder="Nivel de Dificultad: 1" disabled="disabled" style="background-color: #022553;">
+                {{/if}}
                 <input type="hidden" name="inicial" value="{{inicial}}">
                 <input type="hidden" name="numeroPregunta" value="{{numeroPregunta}}">
-            <div class="d-grid gap-1 mt-3">
-                {{#if dificultad}}
-                    <input type="text" class="form-control" placeholder="Nivel de Dificultad: {{dificultad}}" disabled="disabled" style="background-color: #56f337;">
-                {{else}}
-                    <input type="text" class="form-control" placeholder="Nivel de Dificultad: 1" disabled="disabled" style="background-color: #56f337;">
-                {{/if}}
-            </div>
+            
 
-            <div class="d-grid gap-1 mt-2">
+            
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="SIGUIENTE"></input> 
+                    <input type="submit" class="btn btn-info" name="boton" value="SIGUIENTE"></input> 
                     {{#if habilitado}}
                         {{#if finalizar}}
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="FINALIZAR"></input>
-                            </div>
-                            
-                        {{else}}
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="GUARDAR"></input>
-                            </div>
+                                                                         
+                        {{else}}    
+                                <input type="submit" class="btn btn-warning " name="boton" value="GUARDAR"></input>
                         {{/if}}
-                    {{else}}
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <input type="submit" class="btn btn-info btn-lg btn-block" name="boton" value="GUARDAR" disabled="disabled"></input>
-                        </div>                    
+         
                     {{/if}}
-                    
-                </div>
-             </form>
+            </form> 
+                   {{#if finalizar}}
+                    <form action="/finalizarPreguntas" method="POST">
+                            
+                                <input type="submit" class="btn btn-success " name="boton" value="FINALIZAR"></input>
+                            
+                            </form>
+                {{/if}}
+                
+             
+             
         </card>
     </div>
 </div>
