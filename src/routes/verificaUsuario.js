@@ -6,6 +6,7 @@ router.post("/index",(req, res)=>{
   
     //res.render("index");//para renderizar y enviar el archivo con el nombre y la extencion previamente configurada como .hbs
     var usuario = req.body.usuario;
+    console.log("usuario: "+req.body.usuario);
     var password = req.body.password;
     const url = "https://qqsm-api.herokuapp.com/usuario/verificarUsuario";
     const url2 = "https://qqsm-api.herokuapp.com/usuario/"

@@ -110,13 +110,13 @@ router.post("/preguntas", (req, res)=>{
           const usuario = await rawResponse.json();
           console.log("dentro de finalizar para redireccionar: "+usuario.data.id);
           //redirecciono a la pagina que quiero y envio los datos obtenidos
-          console.log(usuario.data.juegos);
           req.session.idProfesor = usuario.data.id;
           req.session.nombre = usuario.data.nombre;
           req.session.apellido = usuario.data.apellido;
           req.session.user = usuario.data.user;
           req.session.content = usuario;
           req.session.juegos = usuario.data.juegos;
+
           res.render("panelPrincipal", 
           { content: req.session.content, 
             juegos: req.session.juegos, 
@@ -124,7 +124,7 @@ router.post("/preguntas", (req, res)=>{
             apellido:req.session.apellido,
             user:req.session.user
           });
-        })()
+        })();
         
       })();
       
