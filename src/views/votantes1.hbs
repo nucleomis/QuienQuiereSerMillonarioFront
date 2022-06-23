@@ -1,23 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-dark d-flex" style="background-color:rgb(11, 105, 199);">
+<nav class="navbar navbar-expand-lg navbar-dark d-flex" style="background-color:lightslategrey;">
   <div class="container">
-    <div class="container-fluid d-flex">
-      <a class="navbar-brand" href="/"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>     
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse d-flex" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/index"><i class="bi bi-arrow-left-circle" style="font-size: 25px;"></i></a>
-          </li> 
-          <li class="nav-item">
+        <form action="/volverManual" method="post" style="text-align: center;">
+                    <input type="submit"  value="< Volver" class="btn btn-secondary">
+                    </form>
+        <li class="nav-item">
             <a class="nav-link " aria-current="page" href="/index">Id del juego: {{idJuego}}</a>
-          </li>   
-        </ul>
+          </li>
       </div>
+      <div class="btn btn-secundary btn-xs">
+        <a class="navbar-brand" >Pantalla Principal de Votacion</a>
+        
     </div>
   </div>
-</nav>      
+</nav>
+
+    
         
   <div class="opciones">
         <form class="container-fluid d-flex" action="/lamagia" method="POST" id="formvotante">

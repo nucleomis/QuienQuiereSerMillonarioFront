@@ -1,18 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-dark d-flex" style="background-color:lightslategrey;">
   <div class="container">
-    <div class="container-fluid d-flex">
-      <a class="navbar-brand">Panel de los Votantes</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>     
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse d-flex" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/index"><i class="bi bi-arrow-left-circle" style="font-size: 25px;"></i></a>
-          </li> 
-             
-        </ul>
+        <form action="/volverManual" method="post" style="text-align: center;">
+                    <input type="submit"  value="< Volver" class="btn btn-secondary">
+                    </form>
+        
       </div>
+      <div class="btn btn-secundary btn-xs">
+        <a class="navbar-brand" >Inicio de Sesion para Votacion</a>
+        
     </div>
   </div>
 </nav>
