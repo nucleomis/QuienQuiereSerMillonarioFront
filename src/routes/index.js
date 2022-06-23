@@ -10,4 +10,14 @@ router.get("/about",(req, res)=>{
     res.render("about");
     
 });
+
+router.post("/manual",(req, res)=>{
+    res.render("manual");
+    
+});
+
+router.post("/volverManual",(req, res)=>{
+  
+    res.render("index");
+  });
 module.exports = router;

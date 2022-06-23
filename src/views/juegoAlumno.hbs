@@ -4,7 +4,7 @@
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white;">
-                  Menu 
+                  MENU 
                 </a>
                 <form style="background-color: lightslategrey;"></form>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: lightslategrey; color:white">
@@ -12,18 +12,22 @@
                     <li><a class="dropdown-item" href="#">Nombre Administrador: {{nombre}}</a></li>
                     <li><a class="dropdown-item" href="#">Apellido Administrador: {{apellido}}</a></li>
                     <li><hr class="dropdown-divider"></li>
+                    <form action="/volver" method="post" style="text-align: center;">
+                    <input type="submit"  value="< Volver" class="btn btn-secondary">
+                    </form>
+                    <li><hr class="dropdown-divider"></li>
                     <form action="/cerrar" method="post" style="text-align: center;">
-                      <input type="submit" value="Cerrar Sesion" style="background-color: lightslategrey;">
+                      <input type="submit" value="Cerrar Sesion" class="btn btn-danger">
                     </form><!--<input type="submit" value="Cerrar Sesion">-->
                 </ul>
             </li>
         </ul>
   </div>
   <div class="container-fluid d-flex">
-    <a class="navbar-brand" href="/">Panel del Juego</a>
+    <a class="navbar-brand" >Panel del Juego</a>
   </div>  
   <div class="container-fluid d-flex">
-    <a class="navbar-brand" href="/">Id: {{idJuego}}</a>
+    <a class="navbar-brand" >Id: {{idJuego}}</a>
     <a class="navbar-brand fs-5" >Participante: {{nombreParticipante}}</a>
   </div> 
       

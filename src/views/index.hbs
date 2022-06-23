@@ -1,7 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color:lightslategrey;">
     <div class="container-fluid">
         <a class="navbar-brand">Quien quiere ser Millonario</a> 
-        <a class="btn btn-warning" href="../manual.pdf">Manual</a>
+        <form action="/manual" method="post">
+            <input type="submit" class="btn btn-dark" name="participante" value="Manual de Uso">
+        </form>
+        
         <form action="/nuevoVotante" method="post">
             <input type="submit" class="btn btn-light" name="participante" value="Votantes">
         </form>
@@ -11,6 +14,13 @@
 {{#if errorMesnsaje}}
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
         {{errorMesnsaje}}<!--agrego el texto con el string que setee en el controlador-->
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{{/if}}
+
+{{#if dato}}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{dato}}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 {{/if}}

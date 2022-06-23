@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.post("/nuevoJuego",(req,res)=>{
   console.log("redireccionando a nueva pregunta");
-  res.render("nuevoJuego");
+  res.render("nuevoJuego", {nombre:req.session.nombre, apellido:req.session.apellido});
 })
 
 
@@ -16,7 +16,7 @@ router.post("/formulariopreguntas",(req,res)=>{
 
   console.log("redireccionando a nueva pregunta");
 
-  res.render("preguntas", {nombreJuego: nombreJuego});
+  res.render("preguntas", {nombreJuego: nombreJuego,nombre:req.session.nombre, apellido:req.session.apellido,});
 
 });
 
@@ -135,13 +135,25 @@ router.post("/preguntas", (req, res)=>{
     if(contadorPreguntas>=4){
       habilitado = true;
     }
-    if(req.body.boton==="FINALIZAR"){
-      res.render("panelPrincipal", 
-      { content: req.session.content, 
-        juegos: req.session.juegos, 
-        nombre:req.session.nombre,
-        apellido:req.session.apellido,
-        user:req.session.user
+    res.render("preguntas",{success_msg:req.body.success_msg,dificultad:req.session.dificultad, inicial:true, habilitado:habilitado, numeroPregunta:contadorPreguntas, finalizar:finalizar, nombreJuego:req.session.nombreJuego,nombre:req.session.nombre, apellido:req.session.apellido,});
+
+});
+
+router.post("/finalizarPreguntas",(req,res)=>{    
+    req.session.preguntas.push(req.session.preguntaClass);
+    var data = {idProfesor: req.session.idProfesor, nombreJuego: req.session.nombreJuego,preguntas: req.session.preguntas};
+    const url = "https://qqsm-api.herokuapp.com/usuario/";
+    const url2 = "https://qqsm-api.herokuapp.com/juego/crearJuego";
+    const urlLocal2 = "http://localhost:8080/usuario/";
+    console.log(data);
+    (async () => {
+      const rawResponse = await fetch(url2, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
       });
     }else{
       res.render("preguntas",{success_msg:req.body.success_msg,dificultad:req.session.dificultad, inicial:true, habilitado:habilitado, numeroPregunta:contadorPreguntas, finalizar:finalizar, nombreJuego:req.session.nombreJuego});
@@ -189,7 +201,7 @@ router.post("/borrarJuego",(req,res)=>{
       req.session.user = usuario.data.user;
       req.session.content = usuario;
       req.session.juegos = usuario.data.juegos;
-      res.render("panelPrincipal", {content: usuario, juegos: usuario.data.juegos, nombre:usuario.data.nombre,apellido:usuario.data.apellido,user:usuario.data.user});
+      res.render("panelPrincipal", {content: usuario, juegos: usuario.data.juegos, nombre:usuario.data.nombre,apellido:usuario.data.apellido,user:usuario.data.user,nombre:req.session.nombre, apellido:req.session.apellido,});
     })()
    
 })();
