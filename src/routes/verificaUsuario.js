@@ -63,4 +63,9 @@ router.get("/index",(req, res)=>{
   res.render("panelPrincipal", {content:req.session.content, juegos:req.session.juegos, user: req.session.user});
 });
 
+router.post("/volver",(req, res)=>{
+  
+  res.render("panelPrincipal", {content:req.session.content, juegos:req.session.juegos, user: req.session.user});
+});
+
 module.exports = router;

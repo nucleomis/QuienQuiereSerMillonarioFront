@@ -25,7 +25,7 @@ router.post("/jugando",(req,res)=>{
   req.session.juegoiniciado = content;
   console.log("juego encontrado: "+req.session.juegoiniciado.data);
   req.session.indicepregunta = 0;
-  res.render("participante")
+  res.render("participante",{nombre:req.session.nombre, apellido:req.session.apellido})
   
   })();
   });

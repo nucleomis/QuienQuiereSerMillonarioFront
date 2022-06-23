@@ -2,13 +2,13 @@ const express = require("express");
 const fetch = require("node-fetch");
 const router = express.Router();
 router.post("/registrar",(req, res)=>{
-    var nombre=req.body.nombre;
-    var apellido=req.body.apellido;
+    req.session.nombre=req.body.nombre;
+    req.session.apellido=req.body.apellido;
     var direccion=req.body.direccion;
     var user = req.body.user;
     var email=req.body.email;
     var password = req.body.password;
-    var cuerpo = {nombre:nombre, apellido:apellido, direccion:direccion,user: user, email:email, password: password}
+    var cuerpo = {nombre:req.session.nombre, apellido:req.session.apellido, direccion:direccion,user: user, email:email, password: password}
     console.log(nombre);
     const url = "https://qqsm-api.herokuapp.com/usuario/registrar";
     const urlLocal = "http://localhost:8080/usuario/registrar";

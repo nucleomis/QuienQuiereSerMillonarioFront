@@ -42,7 +42,7 @@ router.post("/juegoAlumno",(req,res)=>{
       res2:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[1].respuesta,
       res3:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[2].respuesta,
       res4:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[3].respuesta,
-      nropreg:req.session.nropreg,
+      nropreg:req.session.nropreg,nombre:req.session.nombre, apellido:req.session.apellido,
     });
   }
   else{
@@ -98,7 +98,7 @@ router.post("/respuesta",(req,res)=>{
       res2:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[1].respuesta,
       res3:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[2].respuesta,
       res4:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[3].respuesta,
-      nropreg:req.session.nropreg,
+      nropreg:req.session.nropreg,nombre:req.session.nombre, apellido:req.session.apellido,
     });
   
 });
@@ -117,7 +117,8 @@ router.post("/solucion",(req,res)=>{
       res2:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[1].respuesta,
       res3:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[2].respuesta,
       res4:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[3].respuesta,
-      nropreg:req.session.nropreg,
+      nropreg:req.session.nropreg,nombre:req.session.nombre, apellido:req.session.apellido,
+      
     });
 
 });
@@ -242,7 +243,7 @@ router.post("/mostrarVotacion",(req, res)=>{
       res2:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[1].respuesta,
       res3:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[2].respuesta,
       res4:datosjuego.preguntas[req.session.indicepregunta -1].respuestas[3].respuesta,
-      nropreg:req.session.nropreg,
+      nropreg:req.session.nropreg,nombre:req.session.nombre, apellido:req.session.apellido,
     });
     
       

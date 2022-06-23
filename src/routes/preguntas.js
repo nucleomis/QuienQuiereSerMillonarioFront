@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.post("/nuevoJuego",(req,res)=>{
   console.log("redireccionando a nueva pregunta");
-  res.render("nuevoJuego");
+  res.render("nuevoJuego", {nombre:req.session.nombre, apellido:req.session.apellido});
 })
 
 
@@ -16,7 +16,7 @@ router.post("/formulariopreguntas",(req,res)=>{
 
   console.log("redireccionando a nueva pregunta");
 
-  res.render("preguntas", {nombreJuego: nombreJuego});
+  res.render("preguntas", {nombreJuego: nombreJuego,nombre:req.session.nombre, apellido:req.session.apellido,});
 
 });
 
@@ -98,7 +98,7 @@ router.post("/preguntas", (req, res)=>{
     if(contadorPreguntas>=4){
       habilitado = true;
     }
-    res.render("preguntas",{success_msg:req.body.success_msg,dificultad:req.session.dificultad, inicial:true, habilitado:habilitado, numeroPregunta:contadorPreguntas, finalizar:finalizar, nombreJuego:req.session.nombreJuego});
+    res.render("preguntas",{success_msg:req.body.success_msg,dificultad:req.session.dificultad, inicial:true, habilitado:habilitado, numeroPregunta:contadorPreguntas, finalizar:finalizar, nombreJuego:req.session.nombreJuego,nombre:req.session.nombre, apellido:req.session.apellido,});
 
 });
 
@@ -180,7 +180,7 @@ router.post("/borrarJuego",(req,res)=>{
       req.session.user = usuario.data.user;
       req.session.content = usuario;
       req.session.juegos = usuario.data.juegos;
-      res.render("panelPrincipal", {content: usuario, juegos: usuario.data.juegos, nombre:usuario.data.nombre,apellido:usuario.data.apellido,user:usuario.data.user});
+      res.render("panelPrincipal", {content: usuario, juegos: usuario.data.juegos, nombre:usuario.data.nombre,apellido:usuario.data.apellido,user:usuario.data.user,nombre:req.session.nombre, apellido:req.session.apellido,});
     })()
    
 })();
